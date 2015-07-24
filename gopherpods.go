@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"html/template"
 	"net/http"
+	"os"
 	"time"
 
 	"google.golang.org/appengine"
@@ -242,8 +243,9 @@ func emailHandler(ctx context.Context, w http.ResponseWriter, r *http.Request) e
 
 	msg := mail.Message{
 		Subject: "GopherPods",
-		Sender:  "rojters@gmail.com",
-		Body:    fmt.Sprintf("There are %d outstanding submissions", len(keys)),
+		Sender:  os.Getenv("EMAIL"),
+		Body: fmt.Sprintf("There are %d outstanding submissions.\n\nhttps://gopherpods.appspot.com/submissions/\n\n%v",
+			len(keys), time.Now()),
 	}
 
 	if err := mail.SendToAdmins(ctx, &msg); err != nil {
