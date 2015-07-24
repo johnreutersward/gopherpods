@@ -1,0 +1,25 @@
+{{define "content"}}
+	<div class="podcasts">
+		<table id="podcasts" class="table">
+			<thead>
+				<tr>
+					<th>Title</th>
+					<th>Show</th>
+					<th>Date</th>
+				</tr>
+			</thead>
+			<tbody>
+				{{range .Podcasts}}
+				<tr>
+					<td><a href="{{.URL}}">{{.Title}}</a></td>
+					<td>{{.Show}}</td>
+					<td>{{.DateFormatted}}</td>
+				</tr>
+				{{end}}
+			</tbody>
+		</table>
+	</div>
+	<div id="submit">
+		<p class="text-center">Podcast missing? Submit it <a href="/submit/">here</a></p>
+	</div>
+{{end}}

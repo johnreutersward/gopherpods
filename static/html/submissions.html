@@ -1,0 +1,38 @@
+{{define "content"}}
+<h3>Submissions</h3>
+<hr>
+{{range .Submissions}}
+<div>
+	<p>Submitted {{.Submitted}}</p>
+	<form class="form" action="/submissions/add" method="POST">
+		<div class="form-group">
+			<input type="text" class="form-control" id="inputPodcast" name="show" value="{{.Show}}" required>
+		</div>
+		<div class="form-group">
+			<input type="text" class="form-control" id="inputTitle" name="title" value="{{.Title}}" required>
+		</div>
+		<div class="form-group">
+			<input type="text" class="form-control" id="inputURL" name="url" value="{{.URL}}" required>
+		</div>
+		<div class="form-group">
+			<input type="date" class="form-control" id="inputDate" name="date" value="{{.DateFormatted}}" required>
+		</div>
+		<div class="form-group">
+			<textarea class="form-control" rows="3" id="textAreaDesc" name="desc">{{.Desc}}</textarea>
+		</div>
+		<input type="hidden" name="key" value="{{.Key}}">
+		<div class="form-group">
+			<button type="reset" class="btn btn-default">Cancel</button>
+			<button type="submit" class="btn btn-primary">Submit</button>
+		</div>
+	</form>
+	<form class="form" action="/submissions/del" method="POST">
+		<input type="hidden" name="key" value="{{.Key}}">
+		<div class="form-group">
+			<button type="submit" class="btn btn-danger">Delete</button>
+		</div>
+	</form>
+</div>
+<hr>
+{{end}}
+{{end}}

@@ -1,0 +1,33 @@
+body {
+	padding-top: 20px;
+	padding-bottom: 20px;
+}
+
+a {
+	text-decoration: none !important;
+	color: #375eab !important;
+}
+
+#brand {
+	color: inherit !important;
+	text-decoration: none !important;
+}
+
+#submit {
+	margin: 2em;
+}
+
+@media (min-width: 768px) {
+	.container {
+		max-width: 800px;
+	}
+}
+
+.jumbotron {
+	background-color: #375eab;
+	text-align: center;
+	color: white;
+	border-bottom: 1px solid #e5e5e5;
+	padding: 12px 24px;
+	margin-bottom: 10px;
+}
