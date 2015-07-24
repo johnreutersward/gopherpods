@@ -8,6 +8,10 @@ a {
 	color: #375eab !important;
 }
 
+td {
+	text-align: left !important;
+}
+
 #brand {
 	color: inherit !important;
 	text-decoration: none !important;
@@ -15,6 +19,13 @@ a {
 
 #submit {
 	margin: 2em;
+}
+
+.g-recaptcha {
+	position: relative;
+	height: 100%;
+	width: 100%;
+	overflow: hidden;
 }
 
 @media (min-width: 768px) {

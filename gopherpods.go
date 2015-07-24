@@ -1,19 +1,21 @@
 package gopherpods
 
 import (
+	"encoding/json"
 	"fmt"
 	"html/template"
 	"net/http"
+	"net/url"
 	"os"
+	"strings"
 	"time"
 
 	"google.golang.org/appengine"
 	"google.golang.org/appengine/datastore"
 	"google.golang.org/appengine/log"
 	"google.golang.org/appengine/mail"
+	"google.golang.org/appengine/urlfetch"
 
-	"github.com/gorilla/mux"
-	"github.com/jgrahamc/bluemonday"
 	"golang.org/x/net/context"
 )
 
@@ -49,12 +51,17 @@ var (
 )
 
 type aehandler struct {
-	h func(ctx context.Context, w http.ResponseWriter, r *http.Request) error
+	h      func(ctx context.Context, w http.ResponseWriter, r *http.Request) error
+	method string
 }
 
 func (a aehandler) ServeHTTP(w http.ResponseWriter, r *http.Request) {
-	ctx := appengine.NewContext(r)
+	if r.Method != a.method {
+		http.NotFound(w, r)
+		return
+	}
 
+	ctx := appengine.NewContext(r)
 	if err := a.h(ctx, w, r); err != nil {
 		log.Errorf(ctx, "%v", err)
 		http.Error(w, "There was an error, sorry", http.StatusInternalServerError)
@@ -63,19 +70,15 @@ func (a aehandler) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 }
 
 func init() {
-	r := mux.NewRouter()
+	http.Handle("/", aehandler{podcastsHandler, "GET"})
+	http.Handle("/submit/", aehandler{submitHandler, "GET"})
+	http.Handle("/submit/add", aehandler{submitAddHandler, "POST"})
 
-	r.Handle("/", aehandler{podcastsHandler}).Methods("GET")
-	r.Handle("/submit/", aehandler{submitHandler}).Methods("GET")
-	r.Handle("/submit/add", aehandler{submitAddHandler}).Methods("POST")
+	http.Handle("/submissions/", aehandler{submissionsHandler, "GET"})
+	http.Handle("/submissions/add", aehandler{submissionsAddHandler, "POST"})
+	http.Handle("/submissions/del", aehandler{submissionsDelHandler, "POST"})
 
-	r.Handle("/submissions/", aehandler{submissionsHandler}).Methods("GET")
-	r.Handle("/submissions/add", aehandler{submissionsAddHandler}).Methods("POST")
-	r.Handle("/submissions/del", aehandler{submissionsDelHandler}).Methods("POST")
-
-	r.Handle("/tasks/email", aehandler{emailHandler}).Methods("GET").Headers("X-Appengine-Cron", "true")
-
-	http.Handle("/", r)
+	http.Handle("/tasks/email", aehandler{emailHandler, "GET"})
 }
 
 type Podcast struct {
@@ -125,23 +128,56 @@ func submitHandler(ctx context.Context, w http.ResponseWriter, r *http.Request) 
 	return submitTmpl.ExecuteTemplate(w, "base", nil)
 }
 
+func sanitize(xss string) string {
+	return template.HTMLEscapeString(template.JSEscapeString(strings.TrimSpace(xss)))
+}
+
+type RecaptchaResponse struct {
+	Success   bool     `json:"success"`
+	ErrorCode []string `json:"error-codes"`
+}
+
 func submitAddHandler(ctx context.Context, w http.ResponseWriter, r *http.Request) error {
 	if err := r.ParseForm(); err != nil {
 		return err
 	}
 
-	policy := bluemonday.StrictPolicy()
+	form := url.Values{}
+	form.Add("secret", os.Getenv("SECRET"))
+	form.Add("response", r.FormValue("g-recaptcha-response"))
+	form.Add("remoteip", r.RemoteAddr)
+	req, err := http.NewRequest("POST", "https://www.google.com/recaptcha/api/siteverify", strings.NewReader(form.Encode()))
+	if err != nil {
+		return err
+	}
+	req.Header.Add("Content-Type", "application/x-www-form-urlencoded")
 
-	date, err := time.Parse(yyyymmdd, policy.Sanitize(r.FormValue("date")))
+	cli := urlfetch.Client(ctx)
+	resp, err := cli.Do(req)
+	if err != nil {
+		return err
+	}
+
+	var recaptcha RecaptchaResponse
+	if err := json.NewDecoder(resp.Body).Decode(&recaptcha); err != nil {
+		return err
+	}
+
+	if !recaptcha.Success {
+		log.Infof(ctx, "%v", recaptcha)
+		return fmt.Errorf("reCAPTCHA check failed")
+	}
+
+	date, err := time.Parse(yyyymmdd, sanitize(r.FormValue("date")))
 	if err != nil {
 		return err
 	}
 
 	sub := Submission{
-		Show:      policy.Sanitize(r.FormValue("show")),
-		Title:     policy.Sanitize(r.FormValue("title")),
-		Desc:      policy.Sanitize(r.FormValue("desc")),
-		URL:       template.URL(policy.Sanitize(r.FormValue("url"))),
+		Show:      sanitize(r.FormValue("show")),
+		Title:     sanitize(r.FormValue("title")),
+		Desc:      sanitize(r.FormValue("desc")),
+		URL:       template.URL(sanitize(r.FormValue("url"))),
 		Submitted: time.Now(),
 		Date:      date,
 	}

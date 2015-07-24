@@ -4,8 +4,8 @@
 		<fieldset>
 			<legend>Submit a new episode</legend>
 			<div class="form-group">
-				<label for="inputPodcast" class="col-lg-2 control-label">Podcast</label>
-				<div class="col-lg-10">
+				<label for="inputPodcast">Podcast</label>
+				<div>
 					<input type="text" class="form-control" id="inputPodcast" name="show" placeholder="The Go cast" required>
 					<span class="help-block">
 						Name of the show.
@@ -13,8 +13,8 @@
 				</div>
 			</div>
 			<div class="form-group">
-				<label for="inputTitle" class="col-lg-2 control-label">Title</label>
-				<div class="col-lg-10">
+				<label for="inputTitle">Title</label>
+				<div>
 					<input type="text" class="form-control" id="inputTitle" name="title"
 						placeholder="Episode 32 - Improving the Go GC" required>
 					<span class="help-block">
@@ -23,8 +23,8 @@
 				</div>
 			</div>
 			<div class="form-group">
-				<label for="inputURL" class="col-lg-2 control-label">URL</label>
-				<div class="col-lg-10">
+				<label for="inputURL">URL</label>
+				<div>
 					<input type="text" class="form-control" id="inputURL" name="url" placeholder="" required>
 					<span class="help-block">
 						Url to episode show notes. Do <strong>not</strong> link directly to audio.
@@ -32,8 +32,8 @@
 				</div>
 			</div>
 			<div class="form-group">
-				<label for="inputDate" class="col-lg-2 control-label">Date</label>
-				<div class="col-lg-10">
+				<label for="inputDate">Date</label>
+				<div>
 					<input type="date" class="form-control" id="inputDate" name="date" required>
 					<span class="help-block">
 						Episode date. Usually available in show notes or in the podcast feed.
@@ -41,8 +41,8 @@
 				</div>
 			</div>
 			<div class="form-group">
-				<label for="textAreaDesc" class="col-lg-2 control-label">Description</label>
-				<div class="col-lg-10">
+				<label for="textAreaDesc">Description</label>
+				<div>
 					<textarea class="form-control" rows="3" id="textAreaDesc" name="desc"></textarea>
 					<span class="help-block">
 						Description of the episode. Copy verbatim from show notes or podcast feed if possible.
@@ -50,7 +50,10 @@
 				</div>
 			</div>
 			<div class="form-group">
-				<div class="col-lg-10 col-lg-offset-2">
+				<div class="g-recaptcha" data-sitekey="6LedQAoTAAAAAD97GE654i1u14kRqvDc8U_edkM3"></div>
+			</div>
+			<div class="form-group">
+				<div>
 					<button type="reset" class="btn btn-default">Reset</button>
 					<button type="submit" class="btn btn-primary">Submit</button>
 				</div>
