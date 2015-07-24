@@ -1,6 +1,7 @@
 package gopherpods
 
 import (
+	"fmt"
 	"html/template"
 	"net/http"
 	"time"
@@ -8,6 +9,7 @@ import (
 	"google.golang.org/appengine"
 	"google.golang.org/appengine/datastore"
 	"google.golang.org/appengine/log"
+	"google.golang.org/appengine/mail"
 
 	"github.com/gorilla/mux"
 	"github.com/jgrahamc/bluemonday"
@@ -69,6 +71,8 @@ func init() {
 	r.Handle("/submissions/", aehandler{submissionsHandler}).Methods("GET")
 	r.Handle("/submissions/add", aehandler{submissionsAddHandler}).Methods("POST")
 	r.Handle("/submissions/del", aehandler{submissionsDelHandler}).Methods("POST")
+
+	r.Handle("/tasks/email", aehandler{emailHandler}).Methods("GET").Headers("X-Appengine-Cron", "true")
 
 	http.Handle("/", r)
 }
@@ -224,4 +228,27 @@ func submissionsDelHandler(ctx context.Context, w http.ResponseWriter, r *http.R
 	}
 
 	return successTmpl.ExecuteTemplate(w, "base", nil)
+}
+
+func emailHandler(ctx context.Context, w http.ResponseWriter, r *http.Request) error {
+	keys, err := datastore.NewQuery("Submission").KeysOnly().GetAll(ctx, nil)
+	if err != nil {
+		return err
+	}
+
+	if len(keys) == 0 {
+		return nil
+	}
+
+	msg := mail.Message{
+		Subject: "GopherPods",
+		Sender:  "rojters@gmail.com",
+		Body:    fmt.Sprintf("There are %d outstanding submissions", len(keys)),
+	}
+
+	if err := mail.SendToAdmins(ctx, &msg); err != nil {
+		return err
+	}
+
+	return nil
 }

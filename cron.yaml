@@ -1,0 +1,4 @@
+cron:
+- description: daily mailout
+  url: /tasks/email
+  schedule: every 24 hours

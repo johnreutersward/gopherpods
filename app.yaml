@@ -26,6 +26,11 @@ handlers:
   login: admin
   secure: always
 
+- url: /tasks/email
+  script: _go_app
+  login: admin
+  secure: always
+
 - url: /.*
   script: _go_app
   secure: always
