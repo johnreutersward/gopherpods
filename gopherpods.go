@@ -142,30 +142,32 @@ func submitAddHandler(ctx context.Context, w http.ResponseWriter, r *http.Reques
 		return err
 	}
 
-	form := url.Values{}
-	form.Add("secret", os.Getenv("SECRET"))
-	form.Add("response", r.FormValue("g-recaptcha-response"))
-	form.Add("remoteip", r.RemoteAddr)
-	req, err := http.NewRequest("POST", "https://www.google.com/recaptcha/api/siteverify", strings.NewReader(form.Encode()))
-	if err != nil {
-		return err
-	}
-	req.Header.Add("Content-Type", "application/x-www-form-urlencoded")
+	if !appengine.IsDevAppServer() {
+		form := url.Values{}
+		form.Add("secret", os.Getenv("SECRET"))
+		form.Add("response", r.FormValue("g-recaptcha-response"))
+		form.Add("remoteip", r.RemoteAddr)
+		req, err := http.NewRequest("POST", "https://www.google.com/recaptcha/api/siteverify", strings.NewReader(form.Encode()))
+		if err != nil {
+			return err
+		}
+		req.Header.Add("Content-Type", "application/x-www-form-urlencoded")
 
-	cli := urlfetch.Client(ctx)
-	resp, err := cli.Do(req)
-	if err != nil {
-		return err
-	}
+		cli := urlfetch.Client(ctx)
+		resp, err := cli.Do(req)
+		if err != nil {
+			return err
+		}
 
-	var recaptcha RecaptchaResponse
-	if err := json.NewDecoder(resp.Body).Decode(&recaptcha); err != nil {
-		return err
-	}
+		var recaptcha RecaptchaResponse
+		if err := json.NewDecoder(resp.Body).Decode(&recaptcha); err != nil {
+			return err
+		}
 
-	if !recaptcha.Success {
-		log.Infof(ctx, "%v", recaptcha)
-		return fmt.Errorf("reCAPTCHA check failed")
+		if !recaptcha.Success {
+			log.Infof(ctx, "%v", recaptcha)
+			return fmt.Errorf("reCAPTCHA check failed")
+		}
 	}
 
 	date, err := time.Parse(yyyymmdd, sanitize(r.FormValue("date")))
