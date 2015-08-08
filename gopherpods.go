@@ -261,6 +261,7 @@ func feedHandler(ctx context.Context, w http.ResponseWriter, r *http.Request) er
 		feed.Add(item)
 	}
 
+	w.Header().Set("Content-Type", "application/xml")
 	if err := feed.WriteRss(w); err != nil {
 		return err
 	}
