@@ -21,11 +21,25 @@ handlers:
 - url: /fonts
   static_dir: static/fonts
 
-- url: /submit/.*
+- url: /submit
   script: _go_app
   secure: always
 
-- url: /submissions/.*
+- url: /submit/add
+  script: _go_app
+  secure: always
+
+- url: /submissions
+  script: _go_app
+  login: admin
+  secure: always
+
+- url: /submissions/add
+  script: _go_app
+  login: admin
+  secure: always
+
+- url: /submissions/del
   script: _go_app
   login: admin
   secure: always
