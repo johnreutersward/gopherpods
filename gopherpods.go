@@ -20,7 +20,8 @@ import (
 )
 
 const (
-	yyyymmdd = "2006-01-02"
+	yyyymmdd     = "2006-01-02"
+	recaptchaURL = "https://www.google.com/recaptcha/api/siteverify"
 )
 
 var (
@@ -71,10 +72,10 @@ func (a aehandler) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 
 func init() {
 	http.Handle("/", aehandler{podcastsHandler, "GET"})
-	http.Handle("/submit/", aehandler{submitHandler, "GET"})
+	http.Handle("/submit", aehandler{submitHandler, "GET"})
 	http.Handle("/submit/add", aehandler{submitAddHandler, "POST"})
 
-	http.Handle("/submissions/", aehandler{submissionsHandler, "GET"})
+	http.Handle("/submissions", aehandler{submissionsHandler, "GET"})
 	http.Handle("/submissions/add", aehandler{submissionsAddHandler, "POST"})
 	http.Handle("/submissions/del", aehandler{submissionsDelHandler, "POST"})
 
@@ -111,7 +112,7 @@ func (s *Submission) DateFormatted() string {
 
 func podcastsHandler(ctx context.Context, w http.ResponseWriter, r *http.Request) error {
 	podcasts := make([]Podcast, 0)
-	if _, err := datastore.NewQuery("Podcast").GetAll(ctx, &podcasts); err != nil {
+	if _, err := datastore.NewQuery("Podcast").Order("-Date").GetAll(ctx, &podcasts); err != nil {
 		return err
 	}
 
@@ -132,6 +133,41 @@ func sanitize(xss string) string {
 	return template.HTMLEscapeString(template.JSEscapeString(strings.TrimSpace(xss)))
 }
 
+func recaptchaCheck(ctx context.Context, response, ip string) (bool, error) {
+	if appengine.IsDevAppServer() {
+		return true, nil
+	}
+
+	form := url.Values{}
+	form.Add("secret", os.Getenv("SECRET"))
+	form.Add("response", response)
+	form.Add("remoteip", ip)
+	req, err := http.NewRequest("POST", recaptchaURL, strings.NewReader(form.Encode()))
+	if err != nil {
+		return false, err
+	}
+
+	cli := urlfetch.Client(ctx)
+
+	req.Header.Add("Content-Type", "application/x-www-form-urlencoded")
+	resp, err := cli.Do(req)
+	if err != nil {
+		return false, err
+	}
+
+	var recaptcha RecaptchaResponse
+	if err := json.NewDecoder(resp.Body).Decode(&recaptcha); err != nil {
+		return false, err
+	}
+
+	if !recaptcha.Success {
+		log.Warningf(ctx, "%+v", recaptcha)
+		return false, nil
+	}
+
+	return true, nil
+}
+
 type RecaptchaResponse struct {
 	Success   bool     `json:"success"`
 	ErrorCode []string `json:"error-codes"`
@@ -142,32 +178,14 @@ func submitAddHandler(ctx context.Context, w http.ResponseWriter, r *http.Reques
 		return err
 	}
 
-	if !appengine.IsDevAppServer() {
-		form := url.Values{}
-		form.Add("secret", os.Getenv("SECRET"))
-		form.Add("response", r.FormValue("g-recaptcha-response"))
-		form.Add("remoteip", r.RemoteAddr)
-		req, err := http.NewRequest("POST", "https://www.google.com/recaptcha/api/siteverify", strings.NewReader(form.Encode()))
-		if err != nil {
-			return err
-		}
-		req.Header.Add("Content-Type", "application/x-www-form-urlencoded")
+	success, err := recaptchaCheck(ctx, r.FormValue("g-recaptcha-response"), r.RemoteAddr)
+	if err != nil {
+		return err
+	}
 
-		cli := urlfetch.Client(ctx)
-		resp, err := cli.Do(req)
-		if err != nil {
-			return err
-		}
-
-		var recaptcha RecaptchaResponse
-		if err := json.NewDecoder(resp.Body).Decode(&recaptcha); err != nil {
-			return err
-		}
-
-		if !recaptcha.Success {
-			log.Infof(ctx, "%v", recaptcha)
-			return fmt.Errorf("reCAPTCHA check failed")
-		}
+	if !success {
+		http.Error(w, "failed reCAPTCHA check", http.StatusBadRequest)
+		return nil
 	}
 
 	date, err := time.Parse(yyyymmdd, sanitize(r.FormValue("date")))
@@ -282,8 +300,7 @@ func emailHandler(ctx context.Context, w http.ResponseWriter, r *http.Request) e
 	msg := mail.Message{
 		Subject: "GopherPods",
 		Sender:  os.Getenv("EMAIL"),
-		Body: fmt.Sprintf("There are %d outstanding submissions.\n\nhttps://gopherpods.appspot.com/submissions/\n\n%v",
-			len(keys), time.Now()),
+		Body:    fmt.Sprintf("There are %d outstanding submissions", len(keys)),
 	}
 
 	if err := mail.SendToAdmins(ctx, &msg); err != nil {
