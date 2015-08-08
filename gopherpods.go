@@ -7,6 +7,7 @@ import (
 	"net/http"
 	"net/url"
 	"os"
+	"strconv"
 	"strings"
 	"time"
 
@@ -17,6 +18,7 @@ import (
 	"google.golang.org/appengine/memcache"
 	"google.golang.org/appengine/urlfetch"
 
+	"github.com/gorilla/feeds"
 	"golang.org/x/net/context"
 )
 
@@ -76,6 +78,8 @@ func init() {
 	http.Handle("/", aehandler{podcastsHandler, "GET"})
 	http.Handle("/submit", aehandler{submitHandler, "GET"})
 	http.Handle("/submit/add", aehandler{submitAddHandler, "POST"})
+
+	http.Handle("/feed", aehandler{feedHandler, "GET"})
 
 	http.Handle("/submissions", aehandler{submissionsHandler, "GET"})
 	http.Handle("/submissions/add", aehandler{submissionsAddHandler, "POST"})
@@ -231,6 +235,37 @@ func submitAddHandler(ctx context.Context, w http.ResponseWriter, r *http.Reques
 	}
 
 	return thanksTmpl.ExecuteTemplate(w, "base", nil)
+}
+
+func feedHandler(ctx context.Context, w http.ResponseWriter, r *http.Request) error {
+	podcasts, err := getPodcasts(ctx)
+	if err != nil {
+		return err
+	}
+
+	feed := &feeds.Feed{
+		Title:       "GopherPods",
+		Link:        &feeds.Link{Href: "https://gopherpods.appspot.com"},
+		Description: "Podcasts about the Go programming language (golang)",
+		Created:     time.Now(),
+	}
+
+	for i := range podcasts {
+		item := &feeds.Item{
+			Title:       podcasts[i].Show + " - " + podcasts[i].Title,
+			Link:        &feeds.Link{Href: string(podcasts[i].URL)},
+			Description: podcasts[i].Desc,
+			Id:          strconv.FormatInt(podcasts[i].ID, 10),
+			Created:     podcasts[i].Date,
+		}
+		feed.Add(item)
+	}
+
+	if err := feed.WriteRss(w); err != nil {
+		return err
+	}
+
+	return nil
 }
 
 func submissionsHandler(ctx context.Context, w http.ResponseWriter, r *http.Request) error {

@@ -29,6 +29,10 @@ handlers:
   script: _go_app
   secure: always
 
+- url: /feed
+  script: _go_app
+  secure: always
+
 - url: /submissions
   script: _go_app
   login: admin
