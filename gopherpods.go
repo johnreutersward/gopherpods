@@ -14,6 +14,7 @@ import (
 	"google.golang.org/appengine/datastore"
 	"google.golang.org/appengine/log"
 	"google.golang.org/appengine/mail"
+	"google.golang.org/appengine/memcache"
 	"google.golang.org/appengine/urlfetch"
 
 	"golang.org/x/net/context"
@@ -22,6 +23,7 @@ import (
 const (
 	yyyymmdd     = "2006-01-02"
 	recaptchaURL = "https://www.google.com/recaptcha/api/siteverify"
+	cacheKey     = "podcasts"
 )
 
 var (
@@ -110,9 +112,31 @@ func (s *Submission) DateFormatted() string {
 	return s.Date.Format(yyyymmdd)
 }
 
-func podcastsHandler(ctx context.Context, w http.ResponseWriter, r *http.Request) error {
+func getPodcasts(ctx context.Context) ([]Podcast, error) {
 	podcasts := make([]Podcast, 0)
+	_, err := memcache.Gob.Get(ctx, cacheKey, &podcasts)
+	if err != nil && err != memcache.ErrCacheMiss {
+		log.Errorf(ctx, "memcache get error %v", err)
+	}
+
+	if err == nil {
+		return podcasts, err
+	}
+
 	if _, err := datastore.NewQuery("Podcast").Order("-Date").GetAll(ctx, &podcasts); err != nil {
+		return nil, err
+	}
+
+	if err := memcache.Gob.Set(ctx, &memcache.Item{Key: cacheKey, Object: &podcasts}); err != nil {
+		log.Errorf(ctx, "memcache set error %v", err)
+	}
+
+	return podcasts, nil
+}
+
+func podcastsHandler(ctx context.Context, w http.ResponseWriter, r *http.Request) error {
+	podcasts, err := getPodcasts(ctx)
+	if err != nil {
 		return err
 	}
 
@@ -265,6 +289,10 @@ func submissionsAddHandler(ctx context.Context, w http.ResponseWriter, r *http.R
 
 	if err := datastore.Delete(ctx, key); err != nil {
 		return err
+	}
+
+	if err := memcache.Delete(ctx, cacheKey); err != nil {
+		log.Errorf(ctx, "memcache delete error %v", err)
 	}
 
 	return successTmpl.ExecuteTemplate(w, "base", nil)
