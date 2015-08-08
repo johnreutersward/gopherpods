@@ -1,8 +1,7 @@
 {{define "content"}}
-<h3>Submissions</h3>
-<hr>
+<h3 class="mv">Submissions</h3>
 {{range .Submissions}}
-<div>
+<div class="mv">
 	<p>Submitted {{.Submitted}}</p>
 	<form class="form" action="/submissions/add" method="POST">
 		<div class="form-group">
@@ -22,7 +21,7 @@
 		</div>
 		<input type="hidden" name="key" value="{{.Key}}">
 		<div class="form-group">
-			<button type="reset" class="btn btn-default">Cancel</button>
+			<button type="reset" class="btn btn-default">Reset</button>
 			<button type="submit" class="btn btn-primary">Submit</button>
 		</div>
 	</form>
@@ -32,7 +31,7 @@
 			<button type="submit" class="btn btn-danger">Delete</button>
 		</div>
 	</form>
+	<hr>
 </div>
-<hr>
 {{end}}
 {{end}}

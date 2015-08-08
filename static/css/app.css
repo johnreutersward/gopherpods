@@ -21,6 +21,11 @@ td {
 	margin: 2em;
 }
 
+.mv {
+	margin-top: 1em;
+	margin-bottom: 1em;
+}
+
 .g-recaptcha {
 	position: relative;
 	height: 100%;

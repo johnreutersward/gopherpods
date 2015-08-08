@@ -1,52 +1,39 @@
 {{define "content"}}
 <div>
+	<h3 class="mv">Submit a new episode</h3>
 	<form class="form" action="/submit/add" method="POST">
 		<fieldset>
-			<legend>Submit a new episode</legend>
 			<div class="form-group">
 				<label for="inputPodcast">Podcast</label>
 				<div>
-					<input type="text" class="form-control" id="inputPodcast" name="show" placeholder="The Go cast" required>
-					<span class="help-block">
-						Name of the show.
-					</span>
+					<input type="text" class="form-control" id="inputPodcast" name="show" 
+						placeholder="Gophers on a pod" required>
 				</div>
 			</div>
 			<div class="form-group">
 				<label for="inputTitle">Title</label>
 				<div>
 					<input type="text" class="form-control" id="inputTitle" name="title"
-						placeholder="Episode 32 - Improving the Go GC" required>
-					<span class="help-block">
-						Episode title.
-					</span>
+						placeholder="Episode 1 - Getting started with Go" required>
 				</div>
 			</div>
 			<div class="form-group">
 				<label for="inputURL">URL</label>
 				<div>
-					<input type="text" class="form-control" id="inputURL" name="url" placeholder="" required>
-					<span class="help-block">
-						Url to episode show notes. Do <strong>not</strong> link directly to audio.
-					</span>
+					<input type="text" class="form-control" id="inputURL" name="url" 
+						placeholder="https://podcast.com/episodes/1/getting-started-with-go" required>
 				</div>
 			</div>
 			<div class="form-group">
 				<label for="inputDate">Date</label>
 				<div>
 					<input type="date" class="form-control" id="inputDate" name="date" required>
-					<span class="help-block">
-						Episode date. Usually available in show notes or in the podcast feed.
-					</span>
 				</div>
 			</div>
 			<div class="form-group">
 				<label for="textAreaDesc">Description</label>
 				<div>
-					<textarea class="form-control" rows="3" id="textAreaDesc" name="desc"></textarea>
-					<span class="help-block">
-						Description of the episode. Copy verbatim from show notes or podcast feed if possible.
-					</span>
+					<textarea class="form-control" rows="2" id="textAreaDesc" name="desc"></textarea>
 				</div>
 			</div>
 			<div class="form-group">
