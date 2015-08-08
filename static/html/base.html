@@ -5,6 +5,12 @@
 		<meta charset="utf-8">
 		<meta http-equiv="X-UA-Compatible" content="IE=edge">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<meta name="description" content="Podcasts about the Go programming language (golang)">
+		<meta property="og:title" content="Podcasts about Go" />
+		<meta property="og:site_name" content="GopherPods" />
+		<meta property="og:url" content="https://gopherpods.appspot.com" />
+		<meta property="og:description" content="Podcasts about the Go programming language (golang)" />
+		<meta property="og:locale" content="en_US" />
 		<title>Podcasts about Go - GopherPods</title>
 		<link rel="icon" type="image/png" href="/img/logo.png" />
 		<link href="/css/bootstrap.min.css" rel="stylesheet">
@@ -23,7 +29,10 @@
 			ga('create', 'UA-65576224-1', 'auto');
 			ga('send', 'pageview');
 		</script>
-		<script src="https://www.google.com/recaptcha/api.js" async defer></script>
+		<script src="/js/jquery.min.js" defer></script>
+		<script src="/js/jquery.dataTables.min.js" defer></script>
+		<script src="/js/dataTables.bootstrap.js" defer></script>
+		<script src="/js/app.js" defer></script>
 	</head>
 
 	<body>
@@ -36,11 +45,6 @@
 			</div>
 			{{template "content" .}}
 		</div>
-
-		<script src="/js/jquery.min.js"></script>
-		<script src="/js/jquery.dataTables.min.js"></script>
-		<script src="/js/dataTables.bootstrap.js"></script>
-		<script src="/js/app.js"></script>
 	</body>
 </html>
 {{end}}
