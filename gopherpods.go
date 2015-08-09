@@ -39,6 +39,11 @@ var (
 		"static/html/submit.html",
 	))
 
+	failedTmpl = template.Must(template.ParseFiles(
+		"static/html/base.html",
+		"static/html/failed.html",
+	))
+
 	thanksTmpl = template.Must(template.ParseFiles(
 		"static/html/base.html",
 		"static/html/thanks.html",
@@ -212,8 +217,8 @@ func submitAddHandler(ctx context.Context, w http.ResponseWriter, r *http.Reques
 	}
 
 	if !success {
-		http.Error(w, "failed reCAPTCHA check", http.StatusBadRequest)
-		return nil
+		log.Warningf(ctx, "reCAPTCHA check failed")
+		return failedTmpl.ExecuteTemplate(w, "base", nil)
 	}
 
 	date, err := time.Parse(yyyymmdd, sanitize(r.FormValue("date")))
