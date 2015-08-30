@@ -2,10 +2,10 @@
 <!DOCTYPE html>
 <html lang="en">
 	<head>
-		<meta charset="utf-8">
-		<meta http-equiv="X-UA-Compatible" content="IE=edge">
-		<meta name="viewport" content="width=device-width, initial-scale=1">
-		<meta name="description" content="Podcasts about the Go programming language (golang)">
+		<meta charset="utf-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<meta name="description" content="Podcasts about the Go programming language (golang)" />
 		<meta property="og:title" content="Podcasts about Go" />
 		<meta property="og:site_name" content="GopherPods" />
 		<meta property="og:url" content="https://gopherpods.appspot.com" />
@@ -13,9 +13,10 @@
 		<meta property="og:locale" content="en_US" />
 		<title>Podcasts about Go - GopherPods</title>
 		<link rel="icon" type="image/png" href="/img/logo.png" />
-		<link href="/css/bootstrap.min.css" rel="stylesheet">
-		<link href="/css/dataTables.bootstrap.css" rel="stylesheet">
-		<link href="/css/app.css" rel="stylesheet">
+		<link 
+			href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-alpha/css/bootstrap.min.css" 
+			rel="stylesheet" />
+		<link href="/css/app.css" rel="stylesheet" />
 		<link rel="alternate" type="application/rss+xml" href="/feed" />
 		<!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
 		<!--[if lt IE 9]>
@@ -30,21 +31,21 @@
 			ga('create', 'UA-65576224-1', 'auto');
 			ga('send', 'pageview');
 		</script>
-		<script src="/js/jquery.min.js" defer></script>
-		<script src="/js/jquery.dataTables.min.js" defer></script>
-		<script src="/js/dataTables.bootstrap.js" defer></script>
-		<script src="/js/app.js" defer></script>
 	</head>
 
 	<body>
-		<div class="container">
-			<div class="jumbotron">
-				<a id="brand" href="/">
-					<h1>GopherPods</h1>
-				</a>
-				<p class="lead">Podcasts about Go</p>
+		<div class="container mv">
+			<div class="row">
+				<div class="col-md-8 col-md-offset-2">
+					<div class="jumbotron">
+						<a id="brand" href="/">
+							<h1 class="display-1">GopherPods</h1>
+						</a>
+						<p class="lead">Podcasts about Go</p>
+					</div>
+					{{template "content" .}}
+				</div>
 			</div>
-			{{template "content" .}}
 		</div>
 	</body>
 </html>

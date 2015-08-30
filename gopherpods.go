@@ -24,6 +24,7 @@ import (
 
 const (
 	yyyymmdd     = "2006-01-02"
+	usdate       = "02 Jan 2006"
 	recaptchaURL = "https://www.google.com/recaptcha/api/siteverify"
 	cacheKey     = "podcasts"
 )
@@ -95,8 +96,8 @@ func init() {
 
 type Podcast struct {
 	ID    int64        `datastore:",noindex"`
-	Show  string       `datastore:",noindex"`
-	Title string       `datastore:",noindex"`
+	Show  string       `datastore:""`
+	Title string       `datastore:""`
 	Desc  string       `datastore:",noindex"`
 	URL   template.URL `datastore:",noindex"`
 	Date  time.Time    `datastore:""`
@@ -104,7 +105,7 @@ type Podcast struct {
 }
 
 func (p *Podcast) DateFormatted() string {
-	return p.Date.Format(yyyymmdd)
+	return p.Date.Format(usdate)
 }
 
 type Submission struct {

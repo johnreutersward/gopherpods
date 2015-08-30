@@ -1,23 +1,20 @@
 {{define "content"}}
-	<div class="podcasts">
-		<table id="podcasts" class="table table-responsive">
-			<thead>
-				<tr>
-					<th>Title</th>
-					<th>Show</th>
-					<th>Date</th>
-				</tr>
-			</thead>
-			<tbody>
-				{{range .Podcasts}}
-				<tr>
-					<td><a href="{{.URL}}">{{.Title}}</a></td>
-					<td>{{.Show}}</td>
-					<td>{{.DateFormatted}}</td>
-				</tr>
-				{{end}}
-			</tbody>
-		</table>
+	<div class="mv">
+		{{range .Podcasts}}
+				<div class="card mv">
+					<div class="card-block">
+						<h4 class="card-title">{{.Title}}</h4>
+						<h6 class="card-subtitle text-muted">{{.Show}}</h6>
+					</div>
+					<div class="card-block">
+						<p class="card-text">{{.Desc}}</p>
+						<a href="{{.URL}}" class="card-link">{{.URL}}</a>
+					</div>
+					<div class="card-footer">
+						<small class="text-muted">{{.DateFormatted}}</small>
+					</div>
+				</div>
+		{{end}}
 	</div>
 	<div class="mv">
 		<p class="text-center">
