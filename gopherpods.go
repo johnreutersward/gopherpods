@@ -19,15 +19,21 @@ import (
 	"google.golang.org/appengine/urlfetch"
 
 	"github.com/gorilla/feeds"
+	"github.com/microcosm-cc/bluemonday"
 	"golang.org/x/net/context"
 )
 
 const (
 	yyyymmdd     = "2006-01-02"
-	usdate       = "02 Jan 2006"
+	displayDate  = "02 Jan 2006"
 	recaptchaURL = "https://www.google.com/recaptcha/api/siteverify"
-	cacheKey     = "podcasts"
 )
+
+var cacheKeys = map[string]string{
+	"-Date": "podscast-date",
+	"Title": "podscast-title",
+	"Show":  "podscast-show",
+}
 
 var (
 	podcastsTmpl = template.Must(template.ParseFiles(
@@ -61,19 +67,19 @@ var (
 	))
 )
 
-type aehandler struct {
+type ctxHandler struct {
 	h      func(ctx context.Context, w http.ResponseWriter, r *http.Request) error
 	method string
 }
 
-func (a aehandler) ServeHTTP(w http.ResponseWriter, r *http.Request) {
-	if r.Method != a.method {
+func (c ctxHandler) ServeHTTP(w http.ResponseWriter, r *http.Request) {
+	if c.method != r.Method {
 		http.NotFound(w, r)
 		return
 	}
 
 	ctx := appengine.NewContext(r)
-	if err := a.h(ctx, w, r); err != nil {
+	if err := c.h(ctx, w, r); err != nil {
 		log.Errorf(ctx, "%v", err)
 		http.Error(w, "There was an error, sorry", http.StatusInternalServerError)
 		return
@@ -81,17 +87,14 @@ func (a aehandler) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 }
 
 func init() {
-	http.Handle("/", aehandler{podcastsHandler, "GET"})
-	http.Handle("/submit", aehandler{submitHandler, "GET"})
-	http.Handle("/submit/add", aehandler{submitAddHandler, "POST"})
-
-	http.Handle("/feed", aehandler{feedHandler, "GET"})
-
-	http.Handle("/submissions", aehandler{submissionsHandler, "GET"})
-	http.Handle("/submissions/add", aehandler{submissionsAddHandler, "POST"})
-	http.Handle("/submissions/del", aehandler{submissionsDelHandler, "POST"})
-
-	http.Handle("/tasks/email", aehandler{emailHandler, "GET"})
+	http.Handle("/", ctxHandler{podcastsHandler, "GET"})
+	http.Handle("/submit", ctxHandler{submitHandler, "GET"})
+	http.Handle("/submit/add", ctxHandler{submitAddHandler, "POST"})
+	http.Handle("/feed", ctxHandler{feedHandler, "GET"})
+	http.Handle("/submissions", ctxHandler{submissionsHandler, "GET"})
+	http.Handle("/submissions/add", ctxHandler{submissionsAddHandler, "POST"})
+	http.Handle("/submissions/del", ctxHandler{submissionsDelHandler, "POST"})
+	http.Handle("/tasks/email", ctxHandler{emailHandler, "GET"})
 }
 
 type Podcast struct {
@@ -105,7 +108,7 @@ type Podcast struct {
 }
 
 func (p *Podcast) DateFormatted() string {
-	return p.Date.Format(usdate)
+	return p.Date.Format(displayDate)
 }
 
 type Submission struct {
@@ -122,9 +125,11 @@ func (s *Submission) DateFormatted() string {
 	return s.Date.Format(yyyymmdd)
 }
 
-func getPodcasts(ctx context.Context) ([]Podcast, error) {
+func getPodcasts(ctx context.Context, order string) ([]Podcast, error) {
 	podcasts := make([]Podcast, 0)
-	_, err := memcache.Gob.Get(ctx, cacheKey, &podcasts)
+	key := cacheKeys[order]
+	log.Infof(ctx, "%s, %s", order, key)
+	_, err := memcache.Gob.Get(ctx, key, &podcasts)
 	if err != nil && err != memcache.ErrCacheMiss {
 		log.Errorf(ctx, "memcache get error %v", err)
 	}
@@ -133,19 +138,30 @@ func getPodcasts(ctx context.Context) ([]Podcast, error) {
 		return podcasts, err
 	}
 
-	if _, err := datastore.NewQuery("Podcast").Order("-Date").GetAll(ctx, &podcasts); err != nil {
+	if _, err := datastore.NewQuery("Podcast").Order(order).GetAll(ctx, &podcasts); err != nil {
 		return nil, err
 	}
 
-	if err := memcache.Gob.Set(ctx, &memcache.Item{Key: cacheKey, Object: &podcasts}); err != nil {
+	if err := memcache.Gob.Set(ctx, &memcache.Item{Key: key, Object: &podcasts}); err != nil {
 		log.Errorf(ctx, "memcache set error %v", err)
 	}
 
 	return podcasts, nil
 }
 
+func parseOrder(qs string) string {
+	switch qs {
+	default:
+		return "-Date"
+	case "title":
+		return "Title"
+	case "show":
+		return "Show"
+	}
+}
+
 func podcastsHandler(ctx context.Context, w http.ResponseWriter, r *http.Request) error {
-	podcasts, err := getPodcasts(ctx)
+	podcasts, err := getPodcasts(ctx, parseOrder(r.FormValue("orderBy")))
 	if err != nil {
 		return err
 	}
@@ -163,8 +179,9 @@ func submitHandler(ctx context.Context, w http.ResponseWriter, r *http.Request) 
 	return submitTmpl.ExecuteTemplate(w, "base", nil)
 }
 
-func sanitize(xss string) string {
-	return template.HTMLEscapeString(template.JSEscapeString(strings.TrimSpace(xss)))
+type recaptchaResponse struct {
+	Success   bool     `json:"success"`
+	ErrorCode []string `json:"error-codes"`
 }
 
 func recaptchaCheck(ctx context.Context, response, ip string) (bool, error) {
@@ -189,7 +206,7 @@ func recaptchaCheck(ctx context.Context, response, ip string) (bool, error) {
 		return false, err
 	}
 
-	var recaptcha RecaptchaResponse
+	var recaptcha recaptchaResponse
 	if err := json.NewDecoder(resp.Body).Decode(&recaptcha); err != nil {
 		return false, err
 	}
@@ -202,9 +219,8 @@ func recaptchaCheck(ctx context.Context, response, ip string) (bool, error) {
 	return true, nil
 }
 
-type RecaptchaResponse struct {
-	Success   bool     `json:"success"`
-	ErrorCode []string `json:"error-codes"`
+func sanitize(s string, policy *bluemonday.Policy) string {
+	return policy.Sanitize(strings.TrimSpace(s))
 }
 
 func submitAddHandler(ctx context.Context, w http.ResponseWriter, r *http.Request) error {
@@ -222,16 +238,18 @@ func submitAddHandler(ctx context.Context, w http.ResponseWriter, r *http.Reques
 		return failedTmpl.ExecuteTemplate(w, "base", nil)
 	}
 
-	date, err := time.Parse(yyyymmdd, sanitize(r.FormValue("date")))
+	policy := bluemonday.StrictPolicy()
+
+	date, err := time.Parse(yyyymmdd, sanitize(r.FormValue("date"), policy))
 	if err != nil {
 		return err
 	}
 
 	sub := Submission{
-		Show:      sanitize(r.FormValue("show")),
-		Title:     sanitize(r.FormValue("title")),
-		Desc:      sanitize(r.FormValue("desc")),
-		URL:       template.URL(sanitize(r.FormValue("url"))),
+		Show:      sanitize(r.FormValue("show"), policy),
+		Title:     sanitize(r.FormValue("title"), policy),
+		Desc:      sanitize(r.FormValue("desc"), policy),
+		URL:       template.URL(sanitize(r.FormValue("url"), policy)),
 		Submitted: time.Now(),
 		Date:      date,
 	}
@@ -244,7 +262,7 @@ func submitAddHandler(ctx context.Context, w http.ResponseWriter, r *http.Reques
 }
 
 func feedHandler(ctx context.Context, w http.ResponseWriter, r *http.Request) error {
-	podcasts, err := getPodcasts(ctx)
+	podcasts, err := getPodcasts(ctx, "-Date")
 	if err != nil {
 		return err
 	}
@@ -333,7 +351,11 @@ func submissionsAddHandler(ctx context.Context, w http.ResponseWriter, r *http.R
 		return err
 	}
 
-	if err := memcache.Delete(ctx, cacheKey); err != nil {
+	keys := make([]string, 0)
+	for _, key := range cacheKeys {
+		keys = append(keys, key)
+	}
+	if err := memcache.DeleteMulti(ctx, keys); err != nil {
 		log.Errorf(ctx, "memcache delete error %v", err)
 	}
 
@@ -370,7 +392,7 @@ func emailHandler(ctx context.Context, w http.ResponseWriter, r *http.Request) e
 	msg := mail.Message{
 		Subject: "GopherPods",
 		Sender:  os.Getenv("EMAIL"),
-		Body:    fmt.Sprintf("There are %d outstanding submissions", len(keys)),
+		Body:    fmt.Sprintf("There are %d submissions", len(keys)),
 	}
 
 	if err := mail.SendToAdmins(ctx, &msg); err != nil {
