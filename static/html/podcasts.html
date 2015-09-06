@@ -1,33 +1,33 @@
 {{define "content"}}
-	<div class="mb">
-		<div class="card card-block">
-			<h3 class="card-title">Podcasts about Go</h3>
-			<p class="card-text">GopherPods is a community-driven curated list of podcasts about the Go programming language and Go related projects.</p>
-			<a href="/submit" class="btn btn-submit">Submit an episode</a>
-		</div>
+<div class="mb">
+	<div class="card card-block">
+		<h3 class="card-title">Podcasts about Go</h3>
+		<p class="card-text">GopherPods is a community-driven curated list of podcasts about the Go programming language and Go related projects.</p>
+		<a href="/submit" class="btn btn-submit">Submit an episode</a>
 	</div>
-	<div class="mv">
-		{{range .Podcasts}}
-				<div class="card mv">
-					<div class="card-block">
-						<h4 class="card-title">{{.Title}}</h4>
-						<h6 class="card-subtitle text-muted">{{.Show}}</h6>
-					</div>
-					<div class="card-block">
-						<p class="card-text">{{.Desc}}</p>
-						<a href="{{.URL}}" class="card-link">{{.URL}}</a>
-					</div>
-					<div class="card-footer">
-						<small class="text-muted">{{.DateFormatted}}</small>
-					</div>
+</div>
+<div class="mv">
+	{{range .Podcasts}}
+			<div class="card mv">
+				<div class="card-block">
+					<h4 class="card-title">{{.Title}}</h4>
+					<h6 class="card-subtitle text-muted">{{.Show}}</h6>
 				</div>
-		{{end}}
+				<div class="card-block">
+					<p class="card-text">{{.Desc}}</p>
+					<a href="{{.URL}}" class="card-link">{{.URL}}</a>
+				</div>
+				<div class="card-footer">
+					<small class="text-muted">{{.DateFormatted}}</small>
+				</div>
+			</div>
+	{{end}}
+</div>
+<div class="mv">
+	<div class="card card-block text-center">
+		<a href="/feed" class="card-link">Feed</a>
+		<a href="https://github.com/rojters/gopherpods" class="card-link">GitHub</a>
+		<a href="https://gophervids.appspot.com" class="card-link">GopherVids</a>
 	</div>
-	<div class="mv">
-		<div class="card card-block text-center">
-			<a href="/feed" class="card-link">Feed</a>
-			<a href="https://github.com/rojters/gopherpods" class="card-link">GitHub</a>
-			<a href="https://gophervids.appspot.com" class="card-link">GopherVids</a>
-		</div>
-	</div>
+</div>
 {{end}}
