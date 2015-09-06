@@ -27,13 +27,8 @@ const (
 	yyyymmdd     = "2006-01-02"
 	displayDate  = "02 Jan 2006"
 	recaptchaURL = "https://www.google.com/recaptcha/api/siteverify"
+	cacheKey     = "podcasts"
 )
-
-var cacheKeys = map[string]string{
-	"-Date": "podscast-date",
-	"Title": "podscast-title",
-	"Show":  "podscast-show",
-}
 
 var (
 	podcastsTmpl = template.Must(template.ParseFiles(
@@ -99,8 +94,8 @@ func init() {
 
 type Podcast struct {
 	ID    int64        `datastore:",noindex"`
-	Show  string       `datastore:""`
-	Title string       `datastore:""`
+	Show  string       `datastore:",noindex"`
+	Title string       `datastore:",noindex"`
 	Desc  string       `datastore:",noindex"`
 	URL   template.URL `datastore:",noindex"`
 	Date  time.Time    `datastore:""`
@@ -125,11 +120,9 @@ func (s *Submission) DateFormatted() string {
 	return s.Date.Format(yyyymmdd)
 }
 
-func getPodcasts(ctx context.Context, order string) ([]Podcast, error) {
+func getPodcasts(ctx context.Context) ([]Podcast, error) {
 	podcasts := make([]Podcast, 0)
-	key := cacheKeys[order]
-	log.Infof(ctx, "%s, %s", order, key)
-	_, err := memcache.Gob.Get(ctx, key, &podcasts)
+	_, err := memcache.Gob.Get(ctx, cacheKey, &podcasts)
 	if err != nil && err != memcache.ErrCacheMiss {
 		log.Errorf(ctx, "memcache get error %v", err)
 	}
@@ -138,30 +131,19 @@ func getPodcasts(ctx context.Context, order string) ([]Podcast, error) {
 		return podcasts, err
 	}
 
-	if _, err := datastore.NewQuery("Podcast").Order(order).GetAll(ctx, &podcasts); err != nil {
+	if _, err := datastore.NewQuery("Podcast").Order("-Date").GetAll(ctx, &podcasts); err != nil {
 		return nil, err
 	}
 
-	if err := memcache.Gob.Set(ctx, &memcache.Item{Key: key, Object: &podcasts}); err != nil {
+	if err := memcache.Gob.Set(ctx, &memcache.Item{Key: cacheKey, Object: &podcasts}); err != nil {
 		log.Errorf(ctx, "memcache set error %v", err)
 	}
 
 	return podcasts, nil
 }
 
-func parseOrder(qs string) string {
-	switch qs {
-	default:
-		return "-Date"
-	case "title":
-		return "Title"
-	case "show":
-		return "Show"
-	}
-}
-
 func podcastsHandler(ctx context.Context, w http.ResponseWriter, r *http.Request) error {
-	podcasts, err := getPodcasts(ctx, parseOrder(r.FormValue("orderBy")))
+	podcasts, err := getPodcasts(ctx)
 	if err != nil {
 		return err
 	}
@@ -262,7 +244,7 @@ func submitAddHandler(ctx context.Context, w http.ResponseWriter, r *http.Reques
 }
 
 func feedHandler(ctx context.Context, w http.ResponseWriter, r *http.Request) error {
-	podcasts, err := getPodcasts(ctx, "-Date")
+	podcasts, err := getPodcasts(ctx)
 	if err != nil {
 		return err
 	}
@@ -270,7 +252,7 @@ func feedHandler(ctx context.Context, w http.ResponseWriter, r *http.Request) er
 	feed := &feeds.Feed{
 		Title:       "GopherPods",
 		Link:        &feeds.Link{Href: "https://gopherpods.appspot.com"},
-		Description: "Podcasts about the Go programming language (golang)",
+		Description: "Podcasts about Go (golang)",
 		Created:     time.Now(),
 	}
 
@@ -351,11 +333,7 @@ func submissionsAddHandler(ctx context.Context, w http.ResponseWriter, r *http.R
 		return err
 	}
 
-	keys := make([]string, 0)
-	for _, key := range cacheKeys {
-		keys = append(keys, key)
-	}
-	if err := memcache.DeleteMulti(ctx, keys); err != nil {
+	if err := memcache.Delete(ctx, cacheKey); err != nil {
 		log.Errorf(ctx, "memcache delete error %v", err)
 	}
 
