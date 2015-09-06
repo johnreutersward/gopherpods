@@ -1,12 +1,12 @@
 # GopherPods
 
-Collecting podcasts about the Go programming language (golang)
+GopherPods is a community-driven curated list of podcasts about the Go programming language and Go related projects.
 
 https://gopherpods.appspot.com
 
 ## Help wanted
 
-* Submit missing podcast episodes about Go: https://gopherpods.appspot.com/submit
+* Submit episodes: https://gopherpods.appspot.com/submit
 * Project logo, preferably a cute gopher wearing big headphones
 
 ## Develop
