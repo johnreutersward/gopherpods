@@ -12,11 +12,32 @@
 	margin-bottom: 1em;
 }
 
+.mb {
+	margin-bottom: 1em;
+}
+
 .jumbotron {
 	background-color: #375eab;
 	text-align: center;
 	color: white;
-	padding: 2rem 2rem !important;
+	padding: 2em !important;
+	margin-bottom: 1em;
+}
+
+.btn-submit {
+	background-color: #375eab;
+	color: white;
+}
+
+.btn-submit:hover {
+	background-color: #375eab;
+	color: white;
+}
+
+@media screen and (max-width: 399px) {
+	.display-1 {
+		font-size: 2.5rem;
+	}
 }
 
 .g-recaptcha {
