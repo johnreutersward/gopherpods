@@ -1,39 +1,15 @@
 {{define "content"}}
-<div>
-	<h3 class="mv">Submit a new episode</h3>
+<div class="card card-block">
+	<h3 class="card-title">Add podcast</h3>
+	<p class="card-text">Contribute to GopherPods by submitting a link to a podcasts that cover Go related topics.</p>
 	<form class="form" action="/submit/add" method="POST">
 		<fieldset>
-			<div class="form-group">
-				<label for="inputPodcast">Podcast</label>
-				<div>
-					<input type="text" class="form-control" id="inputPodcast" name="show" 
-						placeholder="Gophers on a pod" required>
-				</div>
-			</div>
-			<div class="form-group">
-				<label for="inputTitle">Title</label>
-				<div>
-					<input type="text" class="form-control" id="inputTitle" name="title"
-						placeholder="Episode 1 - Getting started with Go" required>
-				</div>
-			</div>
-			<div class="form-group">
-				<label for="inputURL">URL</label>
-				<div>
-					<input type="text" class="form-control" id="inputURL" name="url" 
-						placeholder="https://podcast.com/episodes/1/getting-started-with-go" required>
-				</div>
-			</div>
-			<div class="form-group">
-				<label for="inputDate">Date</label>
-				<div>
-					<input type="date" class="form-control" id="inputDate" name="date" required>
-				</div>
-			</div>
-			<div class="form-group">
-				<label for="textAreaDesc">Description</label>
-				<div>
-					<textarea class="form-control" rows="2" id="textAreaDesc" name="desc"></textarea>
+			<div class="row">
+				<div class="form-group col-md-8">
+					<label for="inputURL">Link to show</label>
+					<div>
+						<input type="text" class="form-control" id="inputURL" name="url" required>
+					</div>
 				</div>
 			</div>
 			<div class="form-group">
@@ -41,8 +17,7 @@
 			</div>
 			<div class="form-group">
 				<div>
-					<button type="reset" class="btn btn-default">Reset</button>
-					<button type="submit" class="btn btn-primary">Submit</button>
+					<button type="submit" class="btn btn-submit">Submit link</button>
 				</div>
 			</div>
 		</fieldset>
