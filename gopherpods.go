@@ -59,36 +59,27 @@ var (
 		"static/html/base.html",
 		"static/html/success.html",
 	))
+
+	errorTmpl = template.Must(template.ParseFiles(
+		"static/html/base.html",
+		"static/html/error.html",
+	))
 )
 
-type ctxHandler struct {
-	h      func(ctx context.Context, w http.ResponseWriter, r *http.Request) error
-	method string
-}
-
-func (c ctxHandler) ServeHTTP(w http.ResponseWriter, r *http.Request) {
-	if c.method != r.Method {
-		http.NotFound(w, r)
-		return
-	}
-
-	ctx := appengine.NewContext(r)
-	if err := c.h(ctx, w, r); err != nil {
-		log.Errorf(ctx, "%v", err)
-		http.Error(w, "There was an error, sorry", http.StatusInternalServerError)
-		return
-	}
+func serveErr(ctx context.Context, err error, w http.ResponseWriter) {
+	log.Errorf(ctx, "%v", err)
+	errorTmpl.ExecuteTemplate(w, "base", nil)
 }
 
 func init() {
-	http.Handle("/", ctxHandler{podcastsHandler, "GET"})
-	http.Handle("/submit", ctxHandler{submitHandler, "GET"})
-	http.Handle("/submit/add", ctxHandler{submitAddHandler, "POST"})
-	http.Handle("/feed", ctxHandler{feedHandler, "GET"})
-	http.Handle("/submissions", ctxHandler{submissionsHandler, "GET"})
-	http.Handle("/submissions/add", ctxHandler{submissionsAddHandler, "POST"})
-	http.Handle("/submissions/del", ctxHandler{submissionsDelHandler, "POST"})
-	http.Handle("/tasks/email", ctxHandler{emailHandler, "GET"})
+	http.HandleFunc("/", podcastsHandler)
+	http.HandleFunc("/submit", submitHandler)
+	http.HandleFunc("/submit/add", submitAddHandler)
+	http.HandleFunc("/feed", feedHandler)
+	http.HandleFunc("/submissions", submissionsHandler)
+	http.HandleFunc("/submissions/add", submissionsAddHandler)
+	http.HandleFunc("/submissions/del", submissionsDelHandler)
+	http.HandleFunc("/tasks/email", emailHandler)
 }
 
 type Podcast struct {
@@ -133,10 +124,12 @@ func getPodcasts(ctx context.Context) ([]Podcast, error) {
 	return podcasts, nil
 }
 
-func podcastsHandler(ctx context.Context, w http.ResponseWriter, r *http.Request) error {
+func podcastsHandler(w http.ResponseWriter, r *http.Request) {
+	ctx := appengine.NewContext(r)
 	podcasts, err := getPodcasts(ctx)
 	if err != nil {
-		return err
+		serveErr(ctx, err, w)
+		return
 	}
 
 	var tmplData = struct {
@@ -145,11 +138,11 @@ func podcastsHandler(ctx context.Context, w http.ResponseWriter, r *http.Request
 		podcasts,
 	}
 
-	return podcastsTmpl.ExecuteTemplate(w, "base", tmplData)
+	podcastsTmpl.ExecuteTemplate(w, "base", tmplData)
 }
 
-func submitHandler(ctx context.Context, w http.ResponseWriter, r *http.Request) error {
-	return submitTmpl.ExecuteTemplate(w, "base", nil)
+func submitHandler(w http.ResponseWriter, r *http.Request) {
+	submitTmpl.ExecuteTemplate(w, "base", nil)
 }
 
 type recaptchaResponse struct {
@@ -192,19 +185,23 @@ func recaptchaCheck(ctx context.Context, response, ip string) (bool, error) {
 	return true, nil
 }
 
-func submitAddHandler(ctx context.Context, w http.ResponseWriter, r *http.Request) error {
+func submitAddHandler(w http.ResponseWriter, r *http.Request) {
+	ctx := appengine.NewContext(r)
 	if err := r.ParseForm(); err != nil {
-		return err
+		serveErr(ctx, err, w)
+		return
 	}
 
 	success, err := recaptchaCheck(ctx, r.FormValue("g-recaptcha-response"), r.RemoteAddr)
 	if err != nil {
-		return err
+		serveErr(ctx, err, w)
+		return
 	}
 
 	if !success {
 		log.Warningf(ctx, "reCAPTCHA check failed")
-		return failedTmpl.ExecuteTemplate(w, "base", nil)
+		failedTmpl.ExecuteTemplate(w, "base", nil)
+		return
 	}
 
 	sub := Submission{
@@ -213,16 +210,19 @@ func submitAddHandler(ctx context.Context, w http.ResponseWriter, r *http.Reques
 	}
 
 	if _, err := datastore.Put(ctx, datastore.NewIncompleteKey(ctx, "Submission", nil), &sub); err != nil {
-		return err
+		serveErr(ctx, err, w)
+		return
 	}
 
-	return thanksTmpl.ExecuteTemplate(w, "base", nil)
+	thanksTmpl.ExecuteTemplate(w, "base", nil)
 }
 
-func feedHandler(ctx context.Context, w http.ResponseWriter, r *http.Request) error {
+func feedHandler(w http.ResponseWriter, r *http.Request) {
+	ctx := appengine.NewContext(r)
 	podcasts, err := getPodcasts(ctx)
 	if err != nil {
-		return err
+		serveErr(ctx, err, w)
+		return
 	}
 
 	feed := &feeds.Feed{
@@ -245,17 +245,18 @@ func feedHandler(ctx context.Context, w http.ResponseWriter, r *http.Request) er
 
 	w.Header().Set("Content-Type", "application/xml")
 	if err := feed.WriteRss(w); err != nil {
-		return err
+		serveErr(ctx, err, w)
+		return
 	}
-
-	return nil
 }
 
-func submissionsHandler(ctx context.Context, w http.ResponseWriter, r *http.Request) error {
+func submissionsHandler(w http.ResponseWriter, r *http.Request) {
+	ctx := appengine.NewContext(r)
 	submissions := make([]Submission, 0)
 	keys, err := datastore.NewQuery("Submission").Order("Submitted").GetAll(ctx, &submissions)
 	if err != nil {
-		return err
+		serveErr(ctx, err, w)
+		return
 	}
 
 	for i := range submissions {
@@ -268,22 +269,26 @@ func submissionsHandler(ctx context.Context, w http.ResponseWriter, r *http.Requ
 		Submissions: submissions,
 	}
 
-	return submissionsTmpl.ExecuteTemplate(w, "base", tmplData)
+	submissionsTmpl.ExecuteTemplate(w, "base", tmplData)
 }
 
-func submissionsAddHandler(ctx context.Context, w http.ResponseWriter, r *http.Request) error {
+func submissionsAddHandler(w http.ResponseWriter, r *http.Request) {
+	ctx := appengine.NewContext(r)
 	if err := r.ParseForm(); err != nil {
-		return err
+		serveErr(ctx, err, w)
+		return
 	}
 
 	ID, _, err := datastore.AllocateIDs(ctx, "Podcast", nil, 1)
 	if err != nil {
-		return err
+		serveErr(ctx, err, w)
+		return
 	}
 
 	date, err := time.Parse(yyyymmdd, r.FormValue("date"))
 	if err != nil {
-		return err
+		serveErr(ctx, err, w)
+		return
 	}
 
 	podcast := Podcast{
@@ -297,50 +302,59 @@ func submissionsAddHandler(ctx context.Context, w http.ResponseWriter, r *http.R
 	}
 
 	if _, err := datastore.Put(ctx, datastore.NewKey(ctx, "Podcast", "", ID, nil), &podcast); err != nil {
-		return err
+		serveErr(ctx, err, w)
+		return
 	}
 
 	key, err := datastore.DecodeKey(r.FormValue("key"))
 	if err != nil {
-		return err
+		serveErr(ctx, err, w)
+		return
 	}
 
 	if err := datastore.Delete(ctx, key); err != nil {
-		return err
+		serveErr(ctx, err, w)
+		return
 	}
 
 	if err := memcache.Delete(ctx, cacheKey); err != nil {
 		log.Errorf(ctx, "memcache delete error %v", err)
 	}
 
-	return successTmpl.ExecuteTemplate(w, "base", nil)
+	successTmpl.ExecuteTemplate(w, "base", nil)
 }
 
-func submissionsDelHandler(ctx context.Context, w http.ResponseWriter, r *http.Request) error {
+func submissionsDelHandler(w http.ResponseWriter, r *http.Request) {
+	ctx := appengine.NewContext(r)
 	if err := r.ParseForm(); err != nil {
-		return err
+		serveErr(ctx, err, w)
+		return
 	}
 
 	key, err := datastore.DecodeKey(r.FormValue("key"))
 	if err != nil {
-		return err
+		serveErr(ctx, err, w)
+		return
 	}
 
 	if err := datastore.Delete(ctx, key); err != nil {
-		return err
+		serveErr(ctx, err, w)
+		return
 	}
 
-	return successTmpl.ExecuteTemplate(w, "base", nil)
+	successTmpl.ExecuteTemplate(w, "base", nil)
 }
 
-func emailHandler(ctx context.Context, w http.ResponseWriter, r *http.Request) error {
+func emailHandler(w http.ResponseWriter, r *http.Request) {
+	ctx := appengine.NewContext(r)
 	keys, err := datastore.NewQuery("Submission").KeysOnly().GetAll(ctx, nil)
 	if err != nil {
-		return err
+		serveErr(ctx, err, w)
+		return
 	}
 
 	if len(keys) == 0 {
-		return nil
+		return
 	}
 
 	msg := mail.Message{
@@ -350,8 +364,7 @@ func emailHandler(ctx context.Context, w http.ResponseWriter, r *http.Request) e
 	}
 
 	if err := mail.SendToAdmins(ctx, &msg); err != nil {
-		return err
+		serveErr(ctx, err, w)
+		return
 	}
-
-	return nil
 }
