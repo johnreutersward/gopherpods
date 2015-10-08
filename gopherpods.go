@@ -19,7 +19,6 @@ import (
 	"google.golang.org/appengine/urlfetch"
 
 	"github.com/gorilla/feeds"
-	"github.com/microcosm-cc/bluemonday"
 	"golang.org/x/net/context"
 )
 
@@ -107,17 +106,9 @@ func (p *Podcast) DateFormatted() string {
 }
 
 type Submission struct {
-	Show      string       `datastore:",noindex"`
-	Title     string       `datastore:",noindex"`
-	Desc      string       `datastore:",noindex"`
 	URL       template.URL `datastore:",noindex"`
-	Date      time.Time    `datastore:",noindex"`
 	Submitted time.Time    `datastore:""`
 	Key       string       `datastore:"-"`
-}
-
-func (s *Submission) DateFormatted() string {
-	return s.Date.Format(yyyymmdd)
 }
 
 func getPodcasts(ctx context.Context) ([]Podcast, error) {
@@ -201,10 +192,6 @@ func recaptchaCheck(ctx context.Context, response, ip string) (bool, error) {
 	return true, nil
 }
 
-func sanitize(s string, policy *bluemonday.Policy) string {
-	return policy.Sanitize(strings.TrimSpace(s))
-}
-
 func submitAddHandler(ctx context.Context, w http.ResponseWriter, r *http.Request) error {
 	if err := r.ParseForm(); err != nil {
 		return err
@@ -220,20 +207,9 @@ func submitAddHandler(ctx context.Context, w http.ResponseWriter, r *http.Reques
 		return failedTmpl.ExecuteTemplate(w, "base", nil)
 	}
 
-	policy := bluemonday.StrictPolicy()
-
-	date, err := time.Parse(yyyymmdd, sanitize(r.FormValue("date"), policy))
-	if err != nil {
-		return err
-	}
-
 	sub := Submission{
-		Show:      sanitize(r.FormValue("show"), policy),
-		Title:     sanitize(r.FormValue("title"), policy),
-		Desc:      sanitize(r.FormValue("desc"), policy),
-		URL:       template.URL(sanitize(r.FormValue("url"), policy)),
+		URL:       template.URL(strings.TrimSpace(r.FormValue("url"))),
 		Submitted: time.Now(),
-		Date:      date,
 	}
 
 	if _, err := datastore.Put(ctx, datastore.NewIncompleteKey(ctx, "Submission", nil), &sub); err != nil {
@@ -300,7 +276,7 @@ func submissionsAddHandler(ctx context.Context, w http.ResponseWriter, r *http.R
 		return err
 	}
 
-	ID, _, err := datastore.AllocateIDs(ctx, "Podcast", nil, 100)
+	ID, _, err := datastore.AllocateIDs(ctx, "Podcast", nil, 1)
 	if err != nil {
 		return err
 	}
