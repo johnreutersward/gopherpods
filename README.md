@@ -6,8 +6,8 @@ https://gopherpods.appspot.com
 
 ## Help wanted
 
-* Submit episodes: https://gopherpods.appspot.com/submit
-* Project logo, preferably a cute gopher wearing big headphones
+* Project logo, preferably a cute gopher wearing big headphones.
+* Add Go related podcasts that are not on the list.
 
 ## Develop
 
