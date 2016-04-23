@@ -1,26 +1,13 @@
 {{define "content"}}
-<div class="card card-block">
-	<h3 class="card-title">Add podcast</h3>
-	<p class="card-text">Contribute to GopherPods by submitting a link to a podcast episode that cover Go related topics.</p>
-	<form class="form" action="/submit/add" method="POST">
-		<fieldset>
-			<div class="row">
-				<div class="form-group col-md-8">
-					<label for="inputURL">Link to show</label>
-					<div>
-						<input type="text" class="form-control" id="inputURL" name="url" required>
-					</div>
-				</div>
-			</div>
-			<div class="form-group">
-				<div class="g-recaptcha" data-sitekey="6LedQAoTAAAAAD97GE654i1u14kRqvDc8U_edkM3"></div>
-			</div>
-			<div class="form-group">
-				<div>
-					<button type="submit" class="btn btn-submit">Submit link</button>
-				</div>
-			</div>
-		</fieldset>
+<div class="mt">
+	<h3>Submit podcast</h3>
+	<p>Contribute to GopherPods by submitting a link to a podcast episode that cover Go related topics.</p>
+	<p>Please link directly to the episode show notes if possible.</p>
+	<form action="/submit/add" method="POST">
+		<label for="inputURL">Link to show</label>
+		<input id="inputURL" type="text" name="url" required>
+		<div class="g-recaptcha mv" data-sitekey="6LedQAoTAAAAAD97GE654i1u14kRqvDc8U_edkM3"></div>
+		<input type="submit" value="Submit link"/>
 	</form>
 </div>
 <script src="https://www.google.com/recaptcha/api.js" async defer></script>

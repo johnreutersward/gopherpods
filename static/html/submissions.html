@@ -1,43 +1,42 @@
 {{define "content"}}
-<div class="card card-block">
-	<h3 class="card-title">Submissions</h3>
-	<p class="card-text">Manage submitted podcast episode and add them to the front page list.</p>
+<div class="mt">
+	<h3>Submissions</h3>
+	<p>Manage submitted podcast episode and add them to the front page list.</p>
 </div>
 {{range .Submissions}}
-<div class="card card-block">
-	<p class="card-text">Submitted {{.Submitted}}</p>
-	<form class="form" action="/submissions/add" method="POST">
-		<div class="form-group">
+<hr>
+<div class="mv">
+	<p>Submitted {{.Submitted}}</p>
+	<form action="/submissions/add" method="POST">
+		<div>
 			<label>Link to show</label>
-			<input type="text" class="form-control" name="url" value="{{.URL}}" required>
+			<input type="text" name="url" value="{{.URL}}" required>
 		</div>
-		<div class="form-group">
+		<div>
 			<label>Podcast name</label>
-			<input type="text" class="form-control" name="show" required>
+			<input type="text" name="show" required>
 		</div>
-		<div class="form-group">
+		<div>
 			<label>Epsiode title</label>
-			<input type="text" class="form-control" name="title" required>
+			<input type="text" name="title" required>
 		</div>
-		<div class="form-group">
+		<div>
 			<label>Date published</label>
-			<input type="date" class="form-control" name="date" required>
+			<input type="date" name="date" required>
 		</div>
-		<div class="form-group">
+		<div>
 			<label>Show notes</label>
-			<textarea class="form-control" rows="3" name="desc"></textarea>
+			<textarea rows="3" name="desc"></textarea>
 		</div>
 		<input type="hidden" name="key" value="{{.Key}}">
-		<div class="form-group">
-			<button type="reset" class="btn btn-default">Reset</button>
-			<button type="submit" class="btn btn-primary">Submit</button>
+		<div>
+			<button type="reset">Reset</button>
+			<button type="submit">Submit</button>
 		</div>
 	</form>
 	<form class="form" action="/submissions/del" method="POST">
 		<input type="hidden" name="key" value="{{.Key}}">
-		<div class="form-group">
-			<button type="submit" class="btn btn-danger">Delete</button>
-		</div>
+		<input type="submit" value="Delete"/>
 	</form>
 </div>
 {{end}}

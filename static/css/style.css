@@ -1,0 +1,82 @@
+body {
+	font-family: Palatino, 'Palatino Linotype', 'Palatino LT STD', 'Book Antiqua', Georgia, serif;
+}
+
+.mv {
+	margin-top: 1em;
+	margin-bottom: 1em;
+}
+
+.mt {
+	margin-top: 3em;
+}
+
+.mb {
+	margin-bottom: 1em;
+}
+
+h3 {
+	font-size: 24px;
+	font-style: normal;
+	font-variant: normal;
+	font-weight: 500;
+	line-height: 15.4px;
+}
+
+p, a {
+	font-size: 14px;
+	font-style: normal;
+	font-variant: normal;
+	font-weight: 400;
+	line-height: 20px;
+}
+
+a {
+	color: #0275d8;
+	text-decoration: none;
+}
+
+ul, li {
+	padding: 0;
+	margin: 0;
+}
+
+li {
+	padding-right: 1em;
+	display: inline-block;
+}
+
+.container {
+	max-width: 650px;
+	margin: auto;
+	padding: 1em;
+}
+
+.header a {
+	color: black;
+	text-decoration: none;
+	font-size: 48px;
+	font-style: normal;
+	font-variant: normal;
+	font-weight: 500;
+	line-height: 26.4px;
+}
+
+.podcast {
+	padding-top: 1em;
+}
+
+.podcast h4	{
+	margin-bottom: 0px;
+}
+
+.by {
+	margin-top: 0.2em;
+}
+
+.g-recaptcha {
+	position: relative;
+	height: 100%;
+	width: 100%;
+	overflow: hidden;
+}
