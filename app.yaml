@@ -3,6 +3,8 @@ runtime: go
 api_version: go1
 version: beta-1
 
+default_expiration: "1d"
+
 env_variables:
   EMAIL: 'mail@mail.com'
   SECRET: 'reCAPTCHA secret key'
