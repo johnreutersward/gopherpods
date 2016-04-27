@@ -62,6 +62,10 @@ li {
 	line-height: 26.4px;
 }
 
+.divider {
+	border-bottom: 1px solid #ddd;
+}
+
 .podcast {
 	padding-top: 1em;
 }
