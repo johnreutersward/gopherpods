@@ -1,5 +1,5 @@
 body {
-	font-family: Palatino, 'Palatino Linotype', 'Palatino LT STD', 'Book Antiqua', Georgia, serif;
+	font-family: Verdana, Geneva, sans-serif;
 }
 
 .mv {
@@ -13,6 +13,10 @@ body {
 
 .mb {
 	margin-bottom: 1em;
+}
+
+h1, h3, h4, .by, .description, .about {
+	font-family: Palatino, 'Palatino Linotype', 'Palatino LT STD', 'Book Antiqua', Georgia, serif;
 }
 
 h3 {
@@ -46,6 +50,16 @@ li {
 	display: inline-block;
 }
 
+input, textarea, button {
+	display: block;
+	margin-top: 0.5em;
+	margin-bottom: 1em;
+}
+
+input[type="text"], textarea {
+	width: 400px;
+}
+
 .container {
 	max-width: 650px;
 	margin: auto;
@@ -76,11 +90,4 @@ li {
 
 .by {
 	margin-top: 0.2em;
-}
-
-.g-recaptcha {
-	position: relative;
-	height: 100%;
-	width: 100%;
-	overflow: hidden;
 }

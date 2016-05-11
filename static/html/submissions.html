@@ -1,7 +1,6 @@
 {{define "content"}}
 <div class="mt">
 	<h3>Submissions</h3>
-	<p>Manage submitted podcast episode and add them to the front page list.</p>
 </div>
 {{range .Submissions}}
 <hr>
@@ -26,17 +25,16 @@
 		</div>
 		<div>
 			<label>Show notes</label>
-			<textarea rows="3" name="desc"></textarea>
+			<textarea rows="7" name="desc"></textarea>
 		</div>
 		<input type="hidden" name="key" value="{{.Key}}">
 		<div>
-			<button type="reset">Reset</button>
 			<button type="submit">Submit</button>
 		</div>
 	</form>
 	<form class="form" action="/submissions/del" method="POST">
 		<input type="hidden" name="key" value="{{.Key}}">
-		<input type="submit" value="Delete"/>
+		<button type="submit" value="Delete">Delete</button>
 	</form>
 </div>
 {{end}}

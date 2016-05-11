@@ -1,7 +1,7 @@
 {{define "content"}}
 <div class="mt">
 	<h3>Podcasts about Go</h3>
-	<p>GopherPods is a community-driven curated list of podcasts that cover the Go programming language and Go related projects.</p>
+	<p class="about">GopherPods is a community-driven curated list of podcasts that cover the Go programming language and Go related projects.</p>
 	<ul>
 		<li><a href="/submit">Submit podcast</a></li>
 		<li><a href="/feed">RSS Feed</a></li>
@@ -17,7 +17,7 @@
 			<p class="by">
 				<span>by {{.Show}} on {{.DateFormatted}}</span>
 			</p>
-			<p>{{.Desc}}</p>
+			<p class="description">{{.Desc}}</p>
 			<a href="{{.URL}}">{{.URL}}</a>
 		</div>
 	{{end}}
