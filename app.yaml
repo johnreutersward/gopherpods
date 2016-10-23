@@ -25,11 +25,7 @@ handlers:
   script: _go_app
   secure: always
 
-- url: /feed
-  script: _go_app
-  secure: always
-
-- url: /podcast/feed
+- url: /feed*
   script: _go_app
   secure: always
 

@@ -75,8 +75,8 @@ func init() {
 	http.HandleFunc("/", podcastsHandler)
 	http.HandleFunc("/submit", submitHandler)
 	http.HandleFunc("/submit/add", submitAddHandler)
-	http.HandleFunc("/feed", provideFeedHandler(providePodcastURL))
-	http.HandleFunc("/podcast/feed", provideFeedHandler(providePodcastMediaURL))
+	http.HandleFunc("/feed", feedHandler)
+	http.HandleFunc("/feed-audio", feedHandler)
 	http.HandleFunc("/submissions", submissionsHandler)
 	http.HandleFunc("/submissions/add", submissionsAddHandler)
 	http.HandleFunc("/submissions/del", submissionsDelHandler)
@@ -84,14 +84,15 @@ func init() {
 }
 
 type Podcast struct {
-	ID       int64        `datastore:",noindex"`
-	Show     string       `datastore:",noindex"`
-	Title    string       `datastore:",noindex"`
-	Desc     string       `datastore:",noindex"`
-	URL      template.URL `datastore:",noindex"`
-	MediaURL template.URL `datastore:",noindex"`
-	Date     time.Time    `datastore:""`
-	Added    time.Time    `datastore:""`
+	ID         int64        `datastore:",noindex"`
+	Show       string       `datastore:",noindex"`
+	Title      string       `datastore:",noindex"`
+	Desc       string       `datastore:",noindex"`
+	URL        template.URL `datastore:",noindex"`
+	MediaURL   template.URL `datastore:",noindex"`
+	RuntimeSec string       `datastore:",noindex"`
+	Date       time.Time    `datastore:""`
+	Added      time.Time    `datastore:""`
 }
 
 func (p *Podcast) DateFormatted() string {
@@ -219,46 +220,45 @@ func submitAddHandler(w http.ResponseWriter, r *http.Request) {
 	thanksTmpl.ExecuteTemplate(w, "base", nil)
 }
 
-func providePodcastURL(p Podcast) string {
-	return string(p.URL)
-}
+func feedHandler(w http.ResponseWriter, r *http.Request) {
+	ctx := appengine.NewContext(r)
+	podcasts, err := getPodcasts(ctx)
+	if err != nil {
+		serveErr(ctx, err, w)
+		return
+	}
 
-func providePodcastMediaURL(p Podcast) string {
-	return string(p.MediaURL)
-}
+	feed := &feeds.Feed{
+		Title:       "GopherPods",
+		Link:        &feeds.Link{Href: "https://gopherpods.appspot.com"},
+		Description: "Podcasts about Go (golang)",
+		Created:     time.Now(),
+	}
 
-func provideFeedHandler(provideHref func(p Podcast) string) func(w http.ResponseWriter, r *http.Request) {
-	return func(w http.ResponseWriter, r *http.Request) {
-		ctx := appengine.NewContext(r)
-		podcasts, err := getPodcasts(ctx)
-		if err != nil {
-			serveErr(ctx, err, w)
-			return
+	for i := range podcasts {
+		link := &feeds.Link{}
+		if r.URL.String() == "/feed-audio" {
+			link.Href = string(podcasts[i].MediaURL)
+			link.Type = "audio/mpeg"
+			link.Length = podcasts[i].RuntimeSec
+		} else {
+			link.Href = string(podcasts[i].URL)
 		}
 
-		feed := &feeds.Feed{
-			Title:       "GopherPods",
-			Link:        &feeds.Link{Href: "https://gopherpods.appspot.com"},
-			Description: "Podcasts about Go (golang)",
-			Created:     time.Now(),
+		item := &feeds.Item{
+			Title:       podcasts[i].Show + " - " + podcasts[i].Title,
+			Link:        link,
+			Description: podcasts[i].Desc,
+			Id:          strconv.FormatInt(podcasts[i].ID, 10),
+			Created:     podcasts[i].Date,
 		}
+		feed.Add(item)
+	}
 
-		for i := range podcasts {
-			item := &feeds.Item{
-				Title:       podcasts[i].Show + " - " + podcasts[i].Title,
-				Link:        &feeds.Link{Href: provideHref(podcasts[i])},
-				Description: podcasts[i].Desc,
-				Id:          strconv.FormatInt(podcasts[i].ID, 10),
-				Created:     podcasts[i].Date,
-			}
-			feed.Add(item)
-		}
-
-		w.Header().Set("Content-Type", "application/xml")
-		if err := feed.WriteRss(w); err != nil {
-			serveErr(ctx, err, w)
-			return
-		}
+	w.Header().Set("Content-Type", "application/xml")
+	if err := feed.WriteRss(w); err != nil {
+		serveErr(ctx, err, w)
+		return
 	}
 }
 
@@ -304,14 +304,15 @@ func submissionsAddHandler(w http.ResponseWriter, r *http.Request) {
 	}
 
 	podcast := Podcast{
-		ID:       ID,
-		Show:     r.FormValue("show"),
-		Title:    r.FormValue("title"),
-		Desc:     r.FormValue("desc"),
-		URL:      template.URL(r.FormValue("url")),
-		MediaURL: template.URL(r.FormValue("media_url")),
-		Date:     date,
-		Added:    time.Now(),
+		ID:         ID,
+		Show:       r.FormValue("show"),
+		Title:      r.FormValue("title"),
+		Desc:       r.FormValue("desc"),
+		URL:        template.URL(r.FormValue("url")),
+		MediaURL:   template.URL(r.FormValue("media_url")),
+		RuntimeSec: r.FormValue("runtime"),
+		Date:       date,
+		Added:      time.Now(),
 	}
 
 	if _, err := datastore.Put(ctx, datastore.NewKey(ctx, "Podcast", "", ID, nil), &podcast); err != nil {
