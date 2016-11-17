@@ -3,7 +3,7 @@ runtime: go
 api_version: go1
 version: beta-1
 
-default_expiration: "1d"
+default_expiration: "1h"
 
 env_variables:
   EMAIL: 'mail@mail.com'
@@ -25,7 +25,7 @@ handlers:
   script: _go_app
   secure: always
 
-- url: /feed*
+- url: /feed
   script: _go_app
   secure: always
 
