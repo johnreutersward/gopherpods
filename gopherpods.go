@@ -7,7 +7,6 @@ import (
 	"net/http"
 	"net/url"
 	"os"
-	"strconv"
 	"strings"
 	"time"
 
@@ -27,6 +26,10 @@ const (
 	displayDate  = "02 Jan 2006"
 	recaptchaURL = "https://www.google.com/recaptcha/api/siteverify"
 	cacheKey     = "podcasts"
+
+	feedName        = "GopherPods"
+	feedDescription = "Podcasts about Go (golang)"
+	feedURL         = "https://gopherpods.appspot.com"
 )
 
 var (
@@ -76,7 +79,6 @@ func init() {
 	http.HandleFunc("/submit", submitHandler)
 	http.HandleFunc("/submit/add", submitAddHandler)
 	http.HandleFunc("/feed", feedHandler)
-	http.HandleFunc("/feed-audio", feedHandler)
 	http.HandleFunc("/submissions", submissionsHandler)
 	http.HandleFunc("/submissions/add", submissionsAddHandler)
 	http.HandleFunc("/submissions/del", submissionsDelHandler)
@@ -91,6 +93,7 @@ type Podcast struct {
 	URL        template.URL `datastore:",noindex"`
 	MediaURL   template.URL `datastore:",noindex"`
 	RuntimeSec string       `datastore:",noindex"`
+	Size       string       `datastore:",noindex"`
 	Date       time.Time    `datastore:""`
 	Added      time.Time    `datastore:""`
 }
@@ -229,34 +232,41 @@ func feedHandler(w http.ResponseWriter, r *http.Request) {
 	}
 
 	feed := &feeds.Feed{
-		Title:       "GopherPods",
-		Link:        &feeds.Link{Href: "https://gopherpods.appspot.com"},
-		Description: "Podcasts about Go (golang)",
-		Created:     time.Now(),
+		Title:       feedName,
+		Link:        &feeds.Link{Href: feedURL},
+		Description: feedDescription,
+		Updated:     time.Now(),
 	}
 
-	for i := range podcasts {
-		link := &feeds.Link{}
-		if r.URL.String() == "/feed-audio" {
-			link.Href = string(podcasts[i].MediaURL)
-			link.Type = "audio/mpeg"
-			link.Length = podcasts[i].RuntimeSec
-		} else {
-			link.Href = string(podcasts[i].URL)
-		}
+	for _, pod := range podcasts {
+		feed.Add(&feeds.Item{
+			Title:       pod.Show + " - " + pod.Title,
+			Description: pod.Desc,
+			Id:          string(pod.URL),
+			Link: &feeds.Link{
+				Href:   string(pod.MediaURL),
+				Length: pod.Size,
+				Type:   "audio/mpeg",
+			},
+			Created: pod.Date,
+		})
+	}
 
-		item := &feeds.Item{
-			Title:       podcasts[i].Show + " - " + podcasts[i].Title,
-			Link:        link,
-			Description: podcasts[i].Desc,
-			Id:          strconv.FormatInt(podcasts[i].ID, 10),
-			Created:     podcasts[i].Date,
-		}
-		feed.Add(item)
+	rss := &feeds.Rss{feed}
+	rssFeed := rss.RssFeed()
+
+	rssFeed.Image = &feeds.RssImage{
+		Title: feedName,
+		Link:  feedURL,
+		Url:   "https://gopherpods.appspot.com/img/gopher.png",
+	}
+
+	for i := 0; i < len(rssFeed.Items); i++ {
+		rssFeed.Items[i].Link = rssFeed.Items[i].Guid
 	}
 
 	w.Header().Set("Content-Type", "application/xml")
-	if err := feed.WriteRss(w); err != nil {
+	if err := feeds.WriteXML(rssFeed, w); err != nil {
 		serveErr(ctx, err, w)
 		return
 	}
@@ -311,6 +321,7 @@ func submissionsAddHandler(w http.ResponseWriter, r *http.Request) {
 		URL:        template.URL(r.FormValue("url")),
 		MediaURL:   template.URL(r.FormValue("media_url")),
 		RuntimeSec: r.FormValue("runtime"),
+		Size:       r.FormValue("size"),
 		Date:       date,
 		Added:      time.Now(),
 	}
