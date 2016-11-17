@@ -7,7 +7,6 @@ import (
 	"net/http"
 	"net/url"
 	"os"
-	"strconv"
 	"strings"
 	"time"
 
@@ -27,6 +26,10 @@ const (
 	displayDate  = "02 Jan 2006"
 	recaptchaURL = "https://www.google.com/recaptcha/api/siteverify"
 	cacheKey     = "podcasts"
+
+	feedName        = "GopherPods"
+	feedDescription = "Podcasts about Go (golang)"
+	feedURL         = "https://gopherpods.appspot.com"
 )
 
 var (
@@ -83,13 +86,16 @@ func init() {
 }
 
 type Podcast struct {
-	ID    int64        `datastore:",noindex"`
-	Show  string       `datastore:",noindex"`
-	Title string       `datastore:",noindex"`
-	Desc  string       `datastore:",noindex"`
-	URL   template.URL `datastore:",noindex"`
-	Date  time.Time    `datastore:""`
-	Added time.Time    `datastore:""`
+	ID         int64        `datastore:",noindex"`
+	Show       string       `datastore:",noindex"`
+	Title      string       `datastore:",noindex"`
+	Desc       string       `datastore:",noindex"`
+	URL        template.URL `datastore:",noindex"`
+	MediaURL   template.URL `datastore:",noindex"`
+	RuntimeSec string       `datastore:",noindex"`
+	Size       string       `datastore:",noindex"`
+	Date       time.Time    `datastore:""`
+	Added      time.Time    `datastore:""`
 }
 
 func (p *Podcast) DateFormatted() string {
@@ -226,25 +232,41 @@ func feedHandler(w http.ResponseWriter, r *http.Request) {
 	}
 
 	feed := &feeds.Feed{
-		Title:       "GopherPods",
-		Link:        &feeds.Link{Href: "https://gopherpods.appspot.com"},
-		Description: "Podcasts about Go (golang)",
-		Created:     time.Now(),
+		Title:       feedName,
+		Link:        &feeds.Link{Href: feedURL},
+		Description: feedDescription,
+		Updated:     time.Now(),
 	}
 
-	for i := range podcasts {
-		item := &feeds.Item{
-			Title:       podcasts[i].Show + " - " + podcasts[i].Title,
-			Link:        &feeds.Link{Href: string(podcasts[i].URL)},
-			Description: podcasts[i].Desc,
-			Id:          strconv.FormatInt(podcasts[i].ID, 10),
-			Created:     podcasts[i].Date,
-		}
-		feed.Add(item)
+	for _, pod := range podcasts {
+		feed.Add(&feeds.Item{
+			Title:       pod.Show + " - " + pod.Title,
+			Description: pod.Desc,
+			Id:          string(pod.URL),
+			Link: &feeds.Link{
+				Href:   string(pod.MediaURL),
+				Length: pod.Size,
+				Type:   "audio/mpeg",
+			},
+			Created: pod.Date,
+		})
+	}
+
+	rss := &feeds.Rss{feed}
+	rssFeed := rss.RssFeed()
+
+	rssFeed.Image = &feeds.RssImage{
+		Title: feedName,
+		Link:  feedURL,
+		Url:   "https://gopherpods.appspot.com/img/gopher.png",
+	}
+
+	for i := 0; i < len(rssFeed.Items); i++ {
+		rssFeed.Items[i].Link = rssFeed.Items[i].Guid
 	}
 
 	w.Header().Set("Content-Type", "application/xml")
-	if err := feed.WriteRss(w); err != nil {
+	if err := feeds.WriteXML(rssFeed, w); err != nil {
 		serveErr(ctx, err, w)
 		return
 	}
@@ -292,13 +314,16 @@ func submissionsAddHandler(w http.ResponseWriter, r *http.Request) {
 	}
 
 	podcast := Podcast{
-		ID:    ID,
-		Show:  r.FormValue("show"),
-		Title: r.FormValue("title"),
-		Desc:  r.FormValue("desc"),
-		URL:   template.URL(r.FormValue("url")),
-		Date:  date,
-		Added: time.Now(),
+		ID:         ID,
+		Show:       r.FormValue("show"),
+		Title:      r.FormValue("title"),
+		Desc:       r.FormValue("desc"),
+		URL:        template.URL(r.FormValue("url")),
+		MediaURL:   template.URL(r.FormValue("media_url")),
+		RuntimeSec: r.FormValue("runtime"),
+		Size:       r.FormValue("size"),
+		Date:       date,
+		Added:      time.Now(),
 	}
 
 	if _, err := datastore.Put(ctx, datastore.NewKey(ctx, "Podcast", "", ID, nil), &podcast); err != nil {

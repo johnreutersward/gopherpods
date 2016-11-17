@@ -8,10 +8,6 @@
 	<p>Submitted {{.Submitted}}</p>
 	<form action="/submissions/add" method="POST">
 		<div>
-			<label>Link to show</label>
-			<input type="text" name="url" value="{{.URL}}" required>
-		</div>
-		<div>
 			<label>Podcast name</label>
 			<input type="text" name="show" required>
 		</div>
@@ -20,12 +16,28 @@
 			<input type="text" name="title" required>
 		</div>
 		<div>
-			<label>Date published</label>
-			<input type="date" name="date" required>
-		</div>
-		<div>
 			<label>Show notes</label>
 			<textarea rows="7" name="desc"></textarea>
+		</div>
+		<div>
+			<label>Link to show</label>
+			<input type="text" name="url" value="{{.URL}}" required>
+		</div>
+		<div>
+			<label>Media URL</label>
+			<input type="text" name="media_url" required>
+		</div>
+		<div>
+			<label>Runtime (s)</label>
+			<input type="text" name="runtime" required>
+		</div>
+		<div>
+			<label>Size (bytes)</label>
+			<input type="text" name="size" required="">
+		</div>
+		<div>
+			<label>Date published</label>
+			<input type="date" name="date" required>
 		</div>
 		<input type="hidden" name="key" value="{{.Key}}">
 		<div>
