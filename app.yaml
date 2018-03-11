@@ -1,7 +1,5 @@
-application: gopherpods
 runtime: go
 api_version: go1
-version: beta-1
 
 default_expiration: "1h"
 
