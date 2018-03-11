@@ -83,19 +83,20 @@ func init() {
 	http.HandleFunc("/submissions/add", submissionsAddHandler)
 	http.HandleFunc("/submissions/del", submissionsDelHandler)
 	http.HandleFunc("/tasks/email", emailHandler)
+	http.HandleFunc("/dump", jsonDumpHandler)
 }
 
 type Podcast struct {
-	ID         int64        `datastore:",noindex"`
-	Show       string       `datastore:",noindex"`
-	Title      string       `datastore:",noindex"`
-	Desc       string       `datastore:",noindex"`
-	URL        template.URL `datastore:",noindex"`
-	MediaURL   template.URL `datastore:",noindex"`
-	RuntimeSec string       `datastore:",noindex"`
-	Size       string       `datastore:",noindex"`
-	Date       time.Time    `datastore:""`
-	Added      time.Time    `datastore:""`
+	ID         int64        `datastore:",noindex" json:"-"`
+	Show       string       `datastore:",noindex" json:"show"`
+	Title      string       `datastore:",noindex" json:"title"`
+	Desc       string       `datastore:",noindex" json:"about"`
+	URL        template.URL `datastore:",noindex" json:"url"`
+	MediaURL   template.URL `datastore:",noindex" json:"-"`
+	RuntimeSec string       `datastore:",noindex" json:"-"`
+	Size       string       `datastore:",noindex" json:"-"`
+	Date       time.Time    `datastore:"" json:"date"`
+	Added      time.Time    `datastore:"" json:"added"`
 }
 
 func (p *Podcast) DateFormatted() string {
@@ -128,6 +129,16 @@ func getPodcasts(ctx context.Context) ([]Podcast, error) {
 	}
 
 	return podcasts, nil
+}
+
+func jsonDumpHandler(w http.ResponseWriter, r *http.Request) {
+	ctx := appengine.NewContext(r)
+	pods := make([]Podcast, 0)
+	if _, err := datastore.NewQuery("Podcast").Order("Date").GetAll(ctx, &pods); err != nil {
+		serveErr(ctx, err, w)
+		return
+	}
+	json.NewEncoder(w).Encode(pods)
 }
 
 func podcastsHandler(w http.ResponseWriter, r *http.Request) {
