@@ -4,9 +4,9 @@ GopherPods is a community-driven list of podcast episodes that cover the Go prog
 
 https://gopherpods.netlify.com
 
-## Add an episode
+## Add episode
 
-Add new episodes to the end of the `episodes.json` file.
+Add new podcast episodes to the end of the `episodes.json` file.
 
 Be sure to link directly to the show page of the particular episode.
 
