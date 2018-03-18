@@ -561,7 +561,7 @@
   },
   {
 	"show": "Go Time",
-	"e.me, GitHub Stars and BitBar",
+	"title": "Gopherize.me, GitHub Stars and BitBar",
 	"about": "Mat Ryer joined the show to talk about creating your own Gopher avae.me, the importance of GitHub Stars, his project BitBar, and other interesting Go projects and news.",
 	"url": "https://changelog.com/gotime/33",
 	"date": "2017-02-09",
