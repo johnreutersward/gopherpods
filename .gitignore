@@ -1,6 +1,6 @@
 .idea
 gopherpods
-index.html
-rss.xml
-atom.xml
+static/index.html
+static/rss.xml
+static/atom.xml
 .netlify
