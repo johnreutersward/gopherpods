@@ -5,6 +5,7 @@ import (
 	"html/template"
 	"log"
 	"os"
+	"path"
 	"sort"
 	"time"
 
@@ -77,7 +78,7 @@ func createSite(episodes episodes) {
 }
 
 func createFile(fileName string) *os.File {
-	file, err := os.Create(fileName)
+	file, err := os.Create(path.Join("static", fileName))
 	if err != nil {
 		log.Fatal(err)
 	}
