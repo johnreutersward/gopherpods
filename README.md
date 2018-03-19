@@ -30,8 +30,13 @@ Generate site
 ./gopherpods
 ```
 
-This will generate the `index.html`, `rss.xml` and `atom.xml` files. 
+This will generate the `index.html`, `rss.xml` and `atom.xml` files in the `static` dir.
 
+## Deploy
+
+```
+netlifyctl deploy -b static
+``` 
 
 ## License
 
