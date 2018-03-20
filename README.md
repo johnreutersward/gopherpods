@@ -1,30 +1,42 @@
 # GopherPods
 
-GopherPods is a community-driven curated list of podcasts that cover the Go programming language and Go related projects.
+GopherPods is a community-driven list of podcast episodes that cover the Go programming language and Go related projects.
 
-https://gopherpods.appspot.com
+https://gopherpods.netlify.com
 
-## Help wanted
+## Add episode
 
-* Project logo, preferably a cute gopher wearing big headphones.
-* Add Go related podcasts that are not on the list.
+Add new podcast episodes to the end of the `episodes.json` file.
+
+Be sure to link directly to the show page of the particular episode.
 
 ## Develop
-
-* Clone the repo
-* Download and install the Google App Engine SDK for Go: https://cloud.google.com/appengine/downloads
 
 Install dependencies
 
 ```
-goapp get ./...
+go get
 ```
 
-Run the development server
+Build
 
 ```
-goapp serve
+go build
 ```
+
+Generate site
+
+```
+./gopherpods
+```
+
+This will generate the `index.html`, `rss.xml` and `atom.xml` files in the `static` dir.
+
+## Deploy
+
+```
+netlifyctl deploy -b static
+``` 
 
 ## License
 
