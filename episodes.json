@@ -796,5 +796,12 @@
 		"about": "Dave Cheney is a prolific programmer, top Go Contributor, blogger (his blog on Go dave.cheney.net is very famous) and now an author as well. He is a speaker and also organizes events around the world.",
 		"url": "https://www.mappingthejourney.com/single-post/2017/08/03/episode-6-interview-with-dave-cheney-go-language-contributor/",
 		"date": "2017-08-03"
+	},
+	{
+		"show": "The New Stack Makers",
+		"title": "The Technical Architecture Behind TICK, a Time Series Analysis Platform Using InfluxDB",
+		"about": "TICK is a time-series analysis platform that accumulates, analyzes and acts on time series data, and it’s the focus of the new episode of The New Stack Makers podcast, which features Paul Dix, InfluxData co-founder and chief technology officer. InfluxDB itself is written in Go, making heavy use of its profiling feature.",
+		"url": "https://thenewstack.io/the-technical-architecture-behind-tick-a-time-series-analysis-platform-using-influxdb/",
+		"date": "2018-01-04"
 	}
 ]
