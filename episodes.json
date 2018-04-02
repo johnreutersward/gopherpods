@@ -1,569 +1,793 @@
 [
-  {
-	"show": "The Changelog",
-	"title": "Google’s Go Programming Language",
-	"about": "Wynn and Adam caught up with Rob Pike, Principal Engineer at Google and Tech Lead for the Google Go team. The primary topic was, of course, Google’s new Open Source programing language, Go.",
-	"url": "https://changelog.com/3/",
-	"date": "2009-11-27"
-  },
-  {
-	"show": "Programming Throwdown",
-	"title": "Go",
-	"about": "",
-	"url": "http://www.programmingthrowdown.com/2012/09/episode-18-go.html",
-	"date": "2012-09-06"
-  },
-  {
-	"show": "Giant Robots Smashing into other Giant Robots Podcast",
-	"title": "Making it fast",
-	"about": "Ben Orenstein is joined by William Josephson and Jay Moorthi from Solano Labs, the makers of tddium, the hosted, scalable continuous integration service. They discuss the architecture of the service, including how they're using Go to speed up parts of it, the surprises they've had in getting started, how they've gotten involved in the Ruby community, and how they validated their idea and get feedback from customers.",
-	"url": "http://giantrobots.fm/16",
-	"date": "2012-10-14"
-  },
-  {
-	"show": "/dev/loop",
-	"title": "The Go programming language, SVG graphics, and the Bootstrap toolkit",
-	"about": "Brandon Konkle, Michael Trythall, Pete Baumgartner and Yann Malet gather to talk about the Go programming language, SVG graphics, and the Bootstrap toolkit.",
-	"url": "https://lincolnloop.com/blog/2012/nov/16/devloop1/",
-	"date": "2012-11-16"
-  },
-  {
-	"show": "The Changelog",
-	"title": "Go programming with Rob Pike and Andrew Gerrand",
-	"about": "Andrew Thorp talks with Rob Pike and Andrew Gerrand about the history and latest updates to the Go programming language, an open source project developed from a team at Google and many contributors from the open source community.",
-	"url": "https://changelog.com/100/",
-	"date": "2013-08-14"
-  },
-  {
-	"show": "Puppet Labs",
-	"title": "An Overview of the Go Language with Brad Fitzpatrick",
-	"about": "We caught up with Google's Brad Fitzpatrick at OSCON this year to talk about what has developers and operations folks so excited about the Go Language (aka golang). Go came out of Google in 2009, and has been slowly been adding different services to the language.",
-	"url": "https://puppetlabs.com/podcasts/overview-go-language-brad-fitzpatrick",
-	"date": "2013-12-04"
-  },
-  {
-	"show": "The Java Posse",
-	"title": "Brad Fitzpatrick on Go",
-	"about": "",
-	"url": "http://javaposse.com/java-posse-431-brad-fitzpatrick-on-go",
-	"date": "2013-12-19"
-  },
-  {
-	"show": "FLOSS Weekly",
-	"title": "The Go Language",
-	"about": "Go is an open source programming language that makes it easy to build simple, reliable, and efficient software. Francesc Campoy Flores is the Developer Programs Engineer for the Go team. Guests: Francesc Campoy Flores.",
-	"url": "https://twit.tv/shows/floss-weekly/episodes/284?autostart=false",
-	"date": "2014-02-19"
-  },
-  {
-	"show": "Software Engineering Radio",
-	"title": "Andrew Gerrand on Go",
-	"about": "Andrew Gerrand works on the Go programming language at Google. His conversation with Jeff begins with a history of the language, including the details behind how Go was conceived and how the open source community contributes to it. Andrew explains how Go intends to simplify problems which have been motifs as Google has scaled. The development of Go is an opportunity to fix issues that weren’t being considered when C was being designed. For example, dependencies are managed more efficiently, shortening build times.",
-	"url": "http://www.se-radio.net/2014/03/episode-202-andrew-gerrand/",
-	"date": "2014-03-14"
-  },
-  {
-	"show": "Hanselminutes",
-	"title": "An Introduction to the Go Programming language with Andrew Gerrand",
-	"about": "Andrew Gerrand is a developer at Google who works on the Go Programming Language (golang). Why Go and why now? What kinds of problems does Go solve that aren't a good match for existing languages? How does Go compare to C++ and improve upon it?",
-	"url": "http://hanselminutes.com/416/an-introduction-to-the-go-programming-language-with-andrew-gerrand",
-	"date": "2014-03-28"
-  },
-  {
-	"show": "The Changelog",
-	"title": "Go, Martini and Gophercasts with Jeremy Saenz",
-	"about": "Adam and Jerod talk with Jeremy Saenz about Go, Martini, Gophercasts and more.",
-	"url": "https://changelog.com/117/",
-	"date": "2014-04-16"
-  },
-  {
-	"show": ".NET Rocks!",
-	"title": "Go and DNSimple with Anthony Eden",
-	"about": "Carl and Richard chat with Anthony Eden about his work creating DNSimple and the languages he uses to create awesome. Yeah, the boys fangirl a bit on DNSimple, since they do love it so. But so what? It's a great product and you should use it. Anthony talks about his inspiration for building DNSimple, his experiences working in Erlang to build parts of the server, as well as Google's super-cool language Go. This is what polyglot programming is all about - using the best languages for the job.",
-	"url": "https://www.dotnetrocks.com/default.aspx?showNum=992",
-	"date": "2014-06-05"
-  },
-  {
-	"show": "UnicornTV",
-	"title": "Golang Best Practices",
-	"about": "Today we're going to talk about good and bad practices in Go. Many of these tips are just opinions, based on our experiences with Go applications. We use Go regularly and have built apps for mobile, web, desktop and servers. With the versatility provided by the Go language and LLVM compiler, not all tips, tools or best practices are applicable to these various environments. Thus we want to talk about some core conventions that are likely to be among the most valuable and simple to use.",
-	"url": "https://go.unicorn.tv/podcasts/golang-best-practices",
-	"date": "2014-09-08"
-  },
-  {
-	"show": "2 Devs from Down Under",
-	"title": "Go(ing) to Go",
-	"about": "So, we're finally back. Episode 35 is all about Go and we're joined by Marc Esher (who was on the podcast before). After some a quick run through some \"things of today\" (that Kai clearly won this time), we get started and try to explain what Go is and its place in the universe of programming languages. We ramble on talking about specific features of the language, what individuals like or dislike about it and how each of us uses Go. Towards the end, we're discussing package management issues with Go but then run out of time to dive into more details and a variety of other topics on our list.",
-	"url": "http://www.2ddu.com/e/episode-35-going-to-go/",
-	"date": "2014-09-12"
-  },
-  {
-	"show": "UnicornTV",
-	"title": "Interview with CC4CS talking about Security in Go",
-	"about": "We talk with Matt Rosentrater and Jiran Dowlati about security in go applications. They help us understand why golang is a better language for security all around when compared to many other programming languages available.",
-	"url": "https://go.unicorn.tv/podcasts/interview-with-cc4cs-talking-about-security-in-go",
-	"date": "2015-03-06"
-  },
-  {
-	"show": "The New Stack Analysts",
-	"title": "Talking with Developers at GopherCon India 2015",
-	"about": "“It’s very much India’s Go Conference. It’s not just us coming in and talking at you,” says Dave Cheney, an Australian speaker, blogger, and open source author. Dave co-organises the Sydney Go Users group and has been an active contributor to the Go project since February 2011. He spent some time during GopherConIndia 2015 to talk with Atul Jha, Community Manager for The New Stack, for this episode of The New Stack Analysts.",
-	"url": "https://soundcloud.com/thenewstackanalysts/show-33-gophercon-india-2015",
-	"date": "2015-03-07"
-  },
-  {
-	"show": "The Changelog",
-	"title": "The State of Go in 2015 with Andrew Gerrand",
-	"about": "Andrew shares the state of Go in 2015, how Go compares to other concurrent languages, why people choose Go over other languages, the C to Go toolchain conversion, and what’s coming in version 1.5 and 1.6 of Go.",
-	"url": "https://changelog.com/148/",
-	"date": "2015-03-25"
-  },
-  {
-	"show": "Beats, Rye \u0026 Types",
-	"title": "Fatherhood with Andrew Gerrand",
-	"about": "As you can tell by our terrible senses of humour, we’re dads. Since we spend a lot of time thinking about and caring for our sons and daughters, we enlisted the expertise of one of our good friends and “Old Dad”, Andrew Gerrand (@enneff) to talk to us about fatherhood. In this case we get to touch on fatherhood as it relates not only to our actual kids, but also as the stewardship of a major open-source project (Google’s Go language #golang).",
-	"url": "http://beatsryetypes.com/episodes/2015/05/18/episode-16-fatherhood-with-andrew-gerrand.html",
-	"date": "2015-05-18"
-  },
-  {
-	"show": "The Changelog",
-	"title": "GopherCon 2015 with Brian Ketelsen and Erik St. Martin",
-	"about": "In this show, we cover what it takes to create and run a conference like GopherCon, the size of the event, the speaking track, after-parties, hack day, workshops, and more. We even cover their focus on diversity with their Diversity Scholarship Support Fund that anyone can support, even those who don’t plan to attend, as well as their child care options to ensure even those with children have the opportunity to attend.",
-	"url": "https://changelog.com/158/",
-	"date": "2015-05-19"
-  },
-  {
-	"show": "Hacker Public Radio",
-	"title": "Some thoughts about the Go language",
-	"about": "I've been learning Go recently. Here are my initial thoughts about the language and framework.",
-	"url": "http://hackerpublicradio.org/eps.php?id=1793",
-	"date": "2015-06-07"
-  },
-  {
-	"show": "The Changelog",
-	"title": "Go in the Modern Enterprise Using gokit with Peter Bourgon",
-	"about": "Our guest this week is Peter Bourgon, the maker of gokit, a toolkit for building microservices using Go in the modern enterprise.",
-	"url": "https://changelog.com/163/",
-	"date": "2015-07-03"
-  },
-  {
-	"show": "The New Stack Analysts",
-	"title": "Code Geneaology and the Future of Go",
-	"about": "What paths will the Go programming language take? This question is posed to CoreOS CTO and Co-founder Brandon Philips, and DeferPanic Founder Ian Eyberg, at the start of this edition of The New Stack Analysts podcast, recorded at GopherCon 2015.",
-	"url": "https://soundcloud.com/thenewstackanalysts/show-52-code-geneology-and-the-future-of-go",
-	"date": "2015-07-10"
-  },
-  {
-	"show": "The Web Platform Podcast",
-	"title": "Go on The Web",
-	"about": "Andrew Gerrand (@enneff), Developer Advocate at Google \u0026 Go core contributor, talks about GoLang and how it is being used in Web Development today as well as the plans for the future of the Go as a platform for the web.",
-	"url": "http://thewebplatform.libsyn.com/55-go-on-the-web",
-	"date": "2015-08-05"
-  },
-  {
-	"show": "The Changelog",
-	"title": "Prometheus and Service Monitoring with Julius Volz from SoundCloud",
-	"about": "Our guest this week is Julius Volz from SoundCloud. Julius joins the show to talk about Prometheus, an open-source service monitoring system written in Go.",
-	"url": "https://changelog.com/168/",
-	"date": "2015-08-07"
-  },
-  {
-	"show": "The Changelog",
-	"title": "BoltDB, InfluxDB and more with Ben Johnson",
-	"about": "Our guest this week is Ben Johnson. He joins the show to school us on BoltDB, InfluxDB, and several other key value store databases out there and why he’s so passionate about developing open source software.",
-	"url": "https://changelog.com/170/",
-	"date": "2015-08-21"
-  },
-  {
-	"show": "The Changelog",
-	"title": "Cylon.js, Gobot, Artoo, and IoT with Ron Evans from The Hybrid Group",
-	"about": "Our guest this week is Ron Evans, ringleader of The Hybrid Group and creator of a fleet of open source robot…libraries. We talked about open source and robotics, Cylon.js, Gobot, Artoo, teaching, KidsRuby, his programming hero, and more.",
-	"url": "https://changelog.com/177/",
-	"date": "2015-10-09"
-  },
-  {
-	"show": ".NET Rocks!",
-	"title": "Programming in Go with Michael Van Sickle",
-	"about": "How much can a language do with only 25 keywords? Carl and Richard talk to Michael Van Sickle about Google's Go Language. The focus in Go is on simplicity and structure - it's amazing what you can do with so few keywords, plus fixed locations for braces, indentations, and so on. The benefit of Go is easy-to-read code that has great concurrency capabilities - the Actor model is a standard pattern of development for Go. Michael also digs into the tooling around Go, using Atom for an editor and various plug ins to make coding and debugging easier. So how good is Go? Docker is written in Go! Check it out!",
-	"url": "http://www.dotnetrocks.com/default.aspx?ShowNum=1203",
-	"date": "2015-10-13"
-  },
-  {
-	"show": "The Changelog",
-	"title": "Caddy HTTP/2 Web Server with Matt Holt and Sebastian Erhart",
-	"about": "This week we’re joined by Matt Holt and Sebastian Erhart to talk about Caddy the HTTP/2 web server written in Go. It’s time to serve the web like it’s 2015!",
-	"url": "https://changelog.com/179/",
-	"date": "2015-10-30"
-  },
-  {
-	"show": "Go Gab",
-	"title": "The Main Goroutine",
-	"about": "Coming to terms with Go's concurrency model, investigating how the main function operates.",
-	"url": "https://www.briefs.fm/go-gab/2",
-	"date": "2016-02-26"
-  },
-  {
-	"show": "Go Gab",
-	"title": "The Rune Data Type",
-	"about": "Three minutes isn't nearly long enough to talk about the rune data type in Go, but I tried anyway.",
-	"url": "https://www.briefs.fm/go-gab/3",
-	"date": "2016-03-01"
-  },
-  {
-	"show": "Go Gab",
-	"title": "Methods Vs Functions",
-	"about": "I wanted to talk briefly about methods vs functions as a way of laying the groundwork for future topics such as pointers and references. This episode answers the question, \"What is the difference between a method and a function?\".",
-	"url": "https://www.briefs.fm/go-gab/4",
-	"date": "2016-03-04"
-  },
-  {
-	"show": "Go Gab",
-	"title": "Pass By Reference Or Value",
-	"about": "Today we talk about whether Go is a pass-by-reference or pass-by-value language.",
-	"url": "https://www.briefs.fm/go-gab/5",
-	"date": "2016-03-19"
-  },
-  {
-	"show": "Google Cloud Platform Podcast",
-	"title": "Go on the Cloud with Andrew Gerrand and Chris Broadfoot",
-	"about": "Join us today for a conversation with Andrew Gerrand and Chris Broadfoot from the Go team. They will discuss with your hosts Francesc Campoy and Mark Mandel why Go is so successful for all the things cloud and how you can use it with Google Cloud Platform.",
-	"url": "https://www.gcppodcast.com/post/episode-25-go-with-andrew-and-chris/",
-	"date": "2016-05-11"
-  },
-  {
-	"show": "Go Time",
-	"title": "It’s Go Time!",
-	"about": "In this inaugural show Erik, Brian, and Carlisia kick things off by sharing some recent Go news that caught their attention, what to expect from this show, ways to get in touch, and more.",
-	"url": "https://changelog.com/gotime-1/",
-	"date": "2016-05-19"
-  },
-  {
-	"show": "Go Time",
-	"title": "Go Community Discussions with Cory LaNou",
-	"about": "Cory LaNou is our guest this week. He shared what it was like to start open source development after 13 years of programming behind closed doors, and what it was like to have one of his first contributions (a bug fix) be reviewed by Dave Cheney (a very prominent Go developer).",
-	"url": "https://changelog.com/gotime-2/",
-	"date": "2016-06-02"
-  },
-  {
-	"show": "Go Time",
-	"title": "Early Go Adoption with Travis Reeder",
-	"about": "Travis Reeder joins the show today to talk about Iron.io, early Go adoption, how Iron.io helps with GoSF and other events for the Go community, the implications of containers at scale, and more.",
-	"url": "https://changelog.com/gotime-3/",
-	"date": "2016-06-10"
-  },
-  {
-	"show": "Go Time",
-	"title": "Go and Data Science With Daniel Whitenack",
-	"about": "In this super informative show with Daniel Whitenack we discuss Go and data science. We talk about what data science really is, tools and projects for getting started with data science using Go, and what to expect from Daniel’s talk at GopherCon this year titled “Go for Data Science”.",
-	"url": "https://changelog.com/gotime-4/",
-	"date": "2016-06-16"
-  },
-  {
-	"show": "Go Time",
-	"title": "Sarah Adams on Test2Doc and Women Who Go",
-	"about": "On this show we’re joined by Sarah Adams. We talk about creating safe spaces for women to get started in the Go community, about Women Who Go, and take a deep dive into her Test2Doc open source project.",
-	"url": "https://changelog.com/gotime-5/",
-	"date": "2016-06-21"
-  },
-  {
-	"show": "Go Time",
-	"title": "Bill Kennedy on Mechanical Sympathy",
-	"about": "A deep dive into the fascinating topic of mechanical sympathy with Bill Kennedy. We talk about that plus CPU caches, how object oriented programming is not oriented to be sympathetic to the hardware, and data-oriented design.",
-	"url": "https://changelog.com/gotime-6/",
-	"date": "2016-06-23"
-  },
-  {
-	"show": "Hello Tech Pros",
-	"title": "GoLang Will Make Your Plumbing Code Sexy",
-	"about": "Aaron Schlesinger discusses the past, present and future of the Go programming language and why it is coming to take over the world.",
-	"url": "http://hellotechpros.com/aaron-schlesinger-technology/",
-	"date": "2016-07-07"
-  },
-  {
-	"show": "The Changelog",
-	"title": "ngrok and Go with Alan Shreve",
-	"about": "This week we talked to Alan Shreve, the creator of the beloved ngrok. We talked about; what it is, why it exists, why he wrote it in Go, and ultimately why 1.0 is open source, but 2.0 is not.",
-	"url": "https://changelog.com/210/",
-	"date": "2016-07-08"
-  },
-  {
-	"show": "Go Time",
-	"title": "Raphael Simon on goa The Framework for Building Microservices",
-	"about": "A deep dive into goa, a design-based microservice framework with a DSL that generates idiomatic Go code for your APIs, swagger documentation, and tests helpers.",
-	"url": "https://changelog.com/gotime-7/",
-	"date": "2016-07-26"
-  },
-  {
-	"show": "Go Time",
-	"title": "Asim Aslam on Micro the Go Microservice Toolkit",
-	"about": "Asim Aslam joined us to talk about Micro, a pluggable RPC based library which provides the fundamental building blocks for writing microservices in Go. We also discussed open source sustainability, microservices, and serverless architecture.",
-	"url": "https://changelog.com/gotime-8/",
-	"date": "2016-07-27"
-  },
-  {
-	"show": "Go Time",
-	"title": "Scott Mansfield on Go at Netflix",
-	"about": "Scott Mansfield joins us this week to talk about Go at Netflix, performance, latency and caching, Rend (their memcached proxy), chaos monkey, and more.",
-	"url": "https://changelog.com/gotime-9/",
-	"date": "2016-07-28"
-  },
-  {
-	"show": "Go Time",
-	"title": "State of Go Survey and Go at Heroku with Ed Muller",
-	"about": "Ed Muller from Heroku join us to discuss his State of Go survey, vendoring and versioning, the Heroku Go Buildpack, how they use Go at Heroku, and more.",
-	"url": "https://changelog.com/gotime-10/",
-	"date": "2016-08-01"
-  },
-  {
-	"show": "Go Time",
-	"title": "Jessie Frazelle on Maintaining Open Source, Docker, and dotfiles",
-	"about": "Jessie Frazelle joins us this week to talk about being an open source maintainer, Docker’s pull request acceptance workflow, dotfiles, getting started with public speaking.",
-	"url": "https://changelog.com/gotime-11/",
-	"date": "2016-08-10"
-  },
-  {
-	"show": "Go Time",
-	"title": "Beyang Liu on Go at Sourcegraph and Writing Better Code",
-	"about": "Beyang Liu from Sourcegraph joins the show to talk about Go at Sourcegraph and their code insight and language analysis tools for writing better code. We also get an understanding of what Sourcegraph is and the many ways to integrate it into your workflow.",
-	"url": "https://changelog.com/gotime-12/",
-	"date": "2016-08-10"
-  },
-  {
-	"show": "Go Time",
-	"title": "Francesc Campoy on GopherCon and Understanding nil",
-	"about": "In our first show after GopherCon, we are joined by Francesc Campoy to chat about some of our GopherCon experience, understanding nil, and a great variety of interesting topics of interest to the Go community.",
-	"url": "https://changelog.com/gotime-13/",
-	"date": "2016-08-18"
-  },
-  {
-	"show": "Go Time",
-	"title": "Matt Holt on CaddyServer, the ACME protocol and TLS",
-	"about": "This episode wins the contest for the most protocols discussed. Matt Holt joins us to talk about TLS, Let’s Encrypt, the ACME protocol, CaddyServer, and a host of other important information security issues.",
-	"url": "https://changelog.com/gotime-14/",
-	"date": "2016-08-25"
-  },
-  {
-	"show": "Hello Tech Pros",
-	"title": "The 4 Cornerstones of Writing Software — Bill Kennedy on Productivity",
-	"about": "Bill Kennedy is a managing partner at Ardan Studio in Miami, Florida, a mobile, web, and systems development company. He is also a co-author of the book Go in Action, the author of the blog GoingGo.Net, and a founding member of GoBridge which is working to increase Go adoption through diversity.",
-	"url": "http://hellotechpros.com/bill-kennedy-productivity/",
-	"date": "2016-08-30"
-  },
-  {
-	"show": "Go Time",
-	"title": "Ben Johnson on the Go Standard Library",
-	"about": "In this episode we have BoltDB’s Ben Johnson talking with us about NoSQL vs. Sql databases and tradeoffs, and we deep dive on the question of how to choose one or the other. We talk abouing data structures while discussing Ben’s Secret Lives of Data project, and also go over his motivation and plans for his blog post series of walkthroughs of the Go standard library packages.",
-	"url": "https://changelog.com/gotime-15/",
-	"date": "2016-09-01"
-  },
-  {
-	"show": "The New Stack @ Scale Podcast",
-	"title": "As Goes Cloud, So Goes Go!",
-	"about": "Which programming languages are most appropriate for use in the cloud? That question, in essence, is the topic of discussion for the twelfth episode of The New Stack at Scale podcast.",
-	"url": "https://blog.newrelic.com/2016/09/07/programming-languages-cloud-golang-new-stack-at-scale-podcast/",
-	"date": "2016-09-07"
-  },
-  {
-	"show": "Go Time",
-	"title": "SOLID Go Design with Dave Cheney",
-	"about": "We were joined by Dave Cheney this week to discuss SOLID Go design.",
-	"url": "https://changelog.com/gotime-16/",
-	"date": "2016-09-08"
-  },
-  {
-	"show": "Go Time",
-	"title": "Monorepos, Mentoring, and Testing with Bryan Liles",
-	"about": "We’re joined by Bryan Liles this week to discuss Monorepos, Mentoring, and Testing.",
-	"url": "https://changelog.com/gotime-17/",
-	"date": "2016-09-15"
-  },
-  {
-	"show": "Go Time",
-	"title": "Aaron Schlesinger on Go in 5 Minutes and Design Patterns",
-	"about": "Aaron Schlesinger joined the show this week to talk about his Go in 5 Minutes series of screencasts, and design patterns in Go.",
-	"url": "https://changelog.com/gotime-18/",
-	"date": "2016-09-22"
-  },
-  {
-	"show": "Go Time",
-	"title": "Programming Practices, Exercism, and Open Source",
-	"about": "Katrina Owen joined the show to explore ideas about open source, code review, learning to program, becoming a savvy programmer, mentoring, projects she's working on, and also her very prominening code learning tool Exercism.",
-	"url": "https://changelog.com/gotime/19",
-	"date": "2016-10-06"
-  },
-  {
-	"show": "Go Time",
-	"title": "Kubernetes, Containers, and Go",
-	"about": "Kelsey Hightower joined the show to talk about the work he's doing at Google Cloud Platform, Kubernetes, Bringing Pokémon GO to life on Google Cloud, Kubernetes cluster federation, Containers, and of course Go.",
-	"url": "https://changelog.com/gotime/20",
-	"date": "2016-10-13"
-  },
-  {
-	"show": "Go Time",
-	"title": "Building a Startup on Go",
-	"about": "Blake Mizerany joined the show to talk about coming to Go from Ruby, Go’s growth and adoption over the past 7 years, adopting external dependencies, building a startup on Go, and coding as CEO.",
-	"url": "https://changelog.com/gotime/21",
-	"date": "2016-10-20"
-  },
-  {
-	"show": "Go Time",
-	"title": "Go Work Groups and Hardware Projects",
-	"about": "Jaana Burcu Dogan joined the show to talk about hardware geekery, on-boarding people into Go, the state of the feedback loop with the Go team, and her initiative to create Go Work Groups.",
-	"url": "https://changelog.com/gotime/22",
-	"date": "2016-10-27"
-  },
-  {
-	"show": "Go Time",
-	"title": "Open Sourcing Chain's Developer Platform",
-	"about": "Tess Rinearson joined the show to talk about Chain launching their open source developer platform, choosing an open source license, open sourcing Chain Core, and the future of this powerful blockchain written in Go.",
-	"url": "https://changelog.com/gotime/23",
-	"date": "2016-11-03"
-  },
-  {
-	"show": "Go Time",
-	"title": "Juju, Jujucharms, and Gorram",
-	"about": "Nate Finch joined the show this week to talk about Juju, Charms, maturing a project along side Go, Gorram, finding your happy path, and more.",
-	"url": "https://changelog.com/gotime/24",
-	"date": "2016-11-10"
-  },
-  {
-	"show": "Go Time",
-	"title": "Go Kit, Dependency Management \u0026 Microservices",
-	"about": "Peter Bourgon joined the show to talk about Go kit, microservices, Go in the enterprise, dependency management, and writing Go packages.",
-	"url": "https://changelog.com/gotime/25",
-	"date": "2016-12-13"
-  },
-  {
-	"show": "Go Time",
-	"title": "Teaching and Learning Go",
-	"about": "Todd McLeod joined the show to talk about teaching and learning Go, his work as an Instructor at Fresno City College, Udemy and on YouTube.",
-	"url": "https://changelog.com/gotime/26",
-	"date": "2016-12-14"
-  },
-  {
-	"show": "Go Time",
-	"title": "The Go Compiler and Go 1.8",
-	"about": "Keith Randall from the Go team joined the show to talk about why a new compiler, what we gain from SSA, what’s next for the compiler, Go 1.8, and the goals/plans for Go 1.9.",
-	"url": "https://changelog.com/gotime/27",
-	"date": "2016-12-15"
-  },
-  {
-	"show": "Go Time",
-	"title": "Creating a Programming Language",
-	"about": "Thorsten Ball joined the show to talk about creating a programming language, writing an interpreter, why he wrote the book \"Writing An Interpreter in Go\", how writing a language/interpreter will help you better understand other programming languages, building a computer from Nand to Tetris, and his thoughts on imposter syndrome.",
-	"url": "https://changelog.com/gotime/28",
-	"date": "2016-12-23"
-  },
-  {
-	"show": "Go Time",
-	"title": "Go and Buffalo Live from Dunkin' Donuts",
-	"about": "Mark Bates joined the show this week live from his local Dunkin' Donuts to talk about Go and Buffalo — his Go web framework. Those who listened live said this was our best show yet. If you agree let us know in #gotimefm on Gopher Slack or say hi on Twitter.",
-	"url": "https://changelog.com/gotime/29",
-	"date": "2017-01-12"
-  },
-  {
-	"show": "Talk Python To Me",
-	"title": "Grumpy: Running Python on Go",
-	"about": "Google runs millions of lines of Python code. The front-end server that drives youtube.com and YouTube’s APIs is primarily written in Python, and it serves millions of requests per second! \r\n\r\nOn this episode you'll meet Dylan Trotter who is working increase performance and concurrency on these servers powering YouTube. He just launched Grumpy: A Python implementation based on Go, the highly concurrent language from Google. \r\n",
-	"url": "https://talkpython.fm/episodes/show/95/grumpy-running-python-on-go",
-	"date": "2017-01-18"
-  },
-  {
-	"show": "Go Time",
-	"title": "Discussing Imposter Syndrome",
-	"about": "Johnny Boursiquot and Bill Kennedy joined the show with Erik and Carlisia to talk about a hard subject — Imposter Syndrome. Not often enough do we get to have open conversations about the eventual inadequacies we all face at some point in our career; some more often than others. You are !imposter.",
-	"url": "https://changelog.com/gotime/30",
-	"date": "2017-01-19"
-  },
-  {
-	"show": "Go Time",
-	"title": "Go, Jocko, and Kafka",
-	"about": "Travis Jeffery joined the show to talk about Go, Jocko, Kafka, how Kafka’s storage internals work, and interesting Go projects and news.",
-	"url": "https://changelog.com/gotime/31",
-	"date": "2017-01-26"
-  },
-  {
-	"show": "Go Time",
-	"title": "Hellogopher, whosthere?",
-	"about": "Filippo Valsorda joined the show to talk about his project Hellogopher, whosthere (whoami.filippo.io), $GOPATH, TLS 1.3, Cloudflare's secret reverse proxy, and more.",
-	"url": "https://changelog.com/gotime/32",
-	"date": "2017-02-02"
-  },
-  {
-	"show": "Go Time",
-	"title": "Gopherize.me, GitHub Stars and BitBar",
-	"about": "Mat Ryer joined the show to talk about creating your own Gopher avae.me, the importance of GitHub Stars, his project BitBar, and other interesting Go projects and news.",
-	"url": "https://changelog.com/gotime/33",
-	"date": "2017-02-09"
-  },
-  {
-	"show": "Software Engineering Daily",
-	"title": "Go Data Science with Daniel Whitenack",
-	"about": "Daniel Whitenack transitioned from doing most of his data science work in Python to writing code in Golang. In this episode, Daniel explains the workflow of a data scientist and discusses why Go is useful. We also talk about the blurry line between data science and data engineering, and how Pachyderm is useful for versioning and reproducibility.",
-	"url": "https://softwareengineeringdaily.com/2017/02/09/go-data-science-with-daniel-whitenack/",
-	"date": "2017-02-09"
-  },
-  {
-	"show": "Go Time",
-	"title": "Pachyderm, Provenance, and Data Lakes",
-	"about": "Joe Doliner joined the show to talk about managing data lakes with Pachyderm, data containers, provenance, and other interesting Go projects and news.",
-	"url": "https://changelog.com/gotime/34",
-	"date": "2017-02-16"
-  },
-  {
-	"show": "Go Time",
-	"title": "Honeycomb, Complex Systems, and Saving Sanity",
-	"about": "Charity Majors joined the show to talk about debugging complex systems, using go to save one's sanity, hiring smart people who can learn, and collectively working to make \"on-call\" life not miserable.",
-	"url": "https://changelog.com/gotime/35",
-	"date": "2017-02-23"
-  },
-  {
-	"show": "Go Time",
-	"title": "Dependency Management, Semver, and Community Consensus",
-	"about": "Sam Boyer joined the show to talk about dependency management, building community consensus, and other interesting Go projects and news.\r\n",
-	"url": "https://changelog.com/gotime/36",
-	"date": "2017-03-02"
-  },
-  {
-	"show": "Go Time",
-	"title": "Gobot, Hardware, and Gatekeeping",
-	"about": "Ron Evans joined the show to talk about Gobot, writing software for hardware, and open source software's role in improving the human condition.\r\n",
-	"url": "https://changelog.com/gotime/37",
-	"date": "2017-03-09"
-  },
-  {
-	"show": "Go Time",
-	"title": "Go Developer Survey",
-	"about": "Steve Francia joined the show to talk about the results of the 2016 Go Developer Survey and other interesting Go projects and news.",
-	"url": "https://changelog.com/gotime/38",
-	"date": "2017-03-16"
-  },
-  {
-	"show": "Go Time",
-	"title": "Splice, Audio, and Compassion",
-	"about": "Matt Aimonetti joined the show to talk about using go to solve tough audio problems, making go for everyone, empowering people with software, and other interesting Go projects and news.",
-	"url": "https://changelog.com/gotime/39",
-	"date": "2017-03-24"
-  },
-  {
-	"show": "Go Time",
-	"title": "Game Development and Rebuilding Microservices",
-	"about": "Luna Duclos joined the show to talk about rebuilding a microservice infrastructure with Go, game development, and other interesting Go projects and news.",
-	"url": "https://changelog.com/gotime/40",
-	"date": "2017-03-31"
-  },
-  {
-	"show": "Go Time",
-	"title": "Distributed Messaging and Network Clients",
-	"about": "Wally Quevedo joined the show to talk processing millions of messages per second with Go, writing network clients, performance at scale, and other interesting Go projects and news.",
-	"url": "https://changelog.com/gotime/41",
-	"date": "2017-04-06"
-  },
-  {
-	"show": "Go Time",
-	"title": "Race Detection, Firmware, and Production-grade Go",
-	"about": "Kavya Joshi joined the show to talk about shipping production-grade Go, writing firmware with Go, making complex technical concepts accessible, and other interesting Go projects and news.",
-	"url": "https://changelog.com/gotime/42",
-	"date": "2017-04-13"
-  }
+	{
+		"show": "The Changelog",
+		"title": "Google’s Go Programming Language",
+		"about": "Wynn and Adam caught up with Rob Pike, Principal Engineer at Google and Tech Lead for the Google Go team. The primary topic was, of course, Google’s new Open Source programing language, Go.",
+		"url": "https://changelog.com/3/",
+		"date": "2009-11-27"
+	},
+	{
+		"show": "Programming Throwdown",
+		"title": "Go",
+		"about": "",
+		"url": "http://www.programmingthrowdown.com/2012/09/episode-18-go.html",
+		"date": "2012-09-06"
+	},
+	{
+		"show": "Giant Robots Smashing into other Giant Robots Podcast",
+		"title": "Making it fast",
+		"about": "Ben Orenstein is joined by William Josephson and Jay Moorthi from Solano Labs, the makers of tddium, the hosted, scalable continuous integration service. They discuss the architecture of the service, including how they're using Go to speed up parts of it, the surprises they've had in getting started, how they've gotten involved in the Ruby community, and how they validated their idea and get feedback from customers.",
+		"url": "http://giantrobots.fm/16",
+		"date": "2012-10-14"
+	},
+	{
+		"show": "/dev/loop",
+		"title": "The Go programming language, SVG graphics, and the Bootstrap toolkit",
+		"about": "Brandon Konkle, Michael Trythall, Pete Baumgartner and Yann Malet gather to talk about the Go programming language, SVG graphics, and the Bootstrap toolkit.",
+		"url": "https://lincolnloop.com/blog/2012/nov/16/devloop1/",
+		"date": "2012-11-16"
+	},
+	{
+		"show": "The Changelog",
+		"title": "Go programming with Rob Pike and Andrew Gerrand",
+		"about": "Andrew Thorp talks with Rob Pike and Andrew Gerrand about the history and latest updates to the Go programming language, an open source project developed from a team at Google and many contributors from the open source community.",
+		"url": "https://changelog.com/100/",
+		"date": "2013-08-14"
+	},
+	{
+		"show": "Puppet Labs",
+		"title": "An Overview of the Go Language with Brad Fitzpatrick",
+		"about": "We caught up with Google's Brad Fitzpatrick at OSCON this year to talk about what has developers and operations folks so excited about the Go Language (aka golang). Go came out of Google in 2009, and has been slowly been adding different services to the language.",
+		"url": "https://puppetlabs.com/podcasts/overview-go-language-brad-fitzpatrick",
+		"date": "2013-12-04"
+	},
+	{
+		"show": "The Java Posse",
+		"title": "Brad Fitzpatrick on Go",
+		"about": "",
+		"url": "http://javaposse.com/java-posse-431-brad-fitzpatrick-on-go",
+		"date": "2013-12-19"
+	},
+	{
+		"show": "FLOSS Weekly",
+		"title": "The Go Language",
+		"about": "Go is an open source programming language that makes it easy to build simple, reliable, and efficient software. Francesc Campoy Flores is the Developer Programs Engineer for the Go team. Guests: Francesc Campoy Flores.",
+		"url": "https://twit.tv/shows/floss-weekly/episodes/284?autostart=false",
+		"date": "2014-02-19"
+	},
+	{
+		"show": "Software Engineering Radio",
+		"title": "Andrew Gerrand on Go",
+		"about": "Andrew Gerrand works on the Go programming language at Google. His conversation with Jeff begins with a history of the language, including the details behind how Go was conceived and how the open source community contributes to it. Andrew explains how Go intends to simplify problems which have been motifs as Google has scaled. The development of Go is an opportunity to fix issues that weren’t being considered when C was being designed. For example, dependencies are managed more efficiently, shortening build times.",
+		"url": "http://www.se-radio.net/2014/03/episode-202-andrew-gerrand/",
+		"date": "2014-03-14"
+	},
+	{
+		"show": "Hanselminutes",
+		"title": "An Introduction to the Go Programming language with Andrew Gerrand",
+		"about": "Andrew Gerrand is a developer at Google who works on the Go Programming Language (golang). Why Go and why now? What kinds of problems does Go solve that aren't a good match for existing languages? How does Go compare to C++ and improve upon it?",
+		"url": "http://hanselminutes.com/416/an-introduction-to-the-go-programming-language-with-andrew-gerrand",
+		"date": "2014-03-28"
+	},
+	{
+		"show": "The Changelog",
+		"title": "Go, Martini and Gophercasts with Jeremy Saenz",
+		"about": "Adam and Jerod talk with Jeremy Saenz about Go, Martini, Gophercasts and more.",
+		"url": "https://changelog.com/117/",
+		"date": "2014-04-16"
+	},
+	{
+		"show": ".NET Rocks!",
+		"title": "Go and DNSimple with Anthony Eden",
+		"about": "Carl and Richard chat with Anthony Eden about his work creating DNSimple and the languages he uses to create awesome. Yeah, the boys fangirl a bit on DNSimple, since they do love it so. But so what? It's a great product and you should use it. Anthony talks about his inspiration for building DNSimple, his experiences working in Erlang to build parts of the server, as well as Google's super-cool language Go. This is what polyglot programming is all about - using the best languages for the job.",
+		"url": "https://www.dotnetrocks.com/default.aspx?showNum=992",
+		"date": "2014-06-05"
+	},
+	{
+		"show": "UnicornTV",
+		"title": "Golang Best Practices",
+		"about": "Today we're going to talk about good and bad practices in Go. Many of these tips are just opinions, based on our experiences with Go applications. We use Go regularly and have built apps for mobile, web, desktop and servers. With the versatility provided by the Go language and LLVM compiler, not all tips, tools or best practices are applicable to these various environments. Thus we want to talk about some core conventions that are likely to be among the most valuable and simple to use.",
+		"url": "https://go.unicorn.tv/podcasts/golang-best-practices",
+		"date": "2014-09-08"
+	},
+	{
+		"show": "2 Devs from Down Under",
+		"title": "Go(ing) to Go",
+		"about": "So, we're finally back. Episode 35 is all about Go and we're joined by Marc Esher (who was on the podcast before). After some a quick run through some \"things of today\" (that Kai clearly won this time), we get started and try to explain what Go is and its place in the universe of programming languages. We ramble on talking about specific features of the language, what individuals like or dislike about it and how each of us uses Go. Towards the end, we're discussing package management issues with Go but then run out of time to dive into more details and a variety of other topics on our list.",
+		"url": "http://www.2ddu.com/e/episode-35-going-to-go/",
+		"date": "2014-09-12"
+	},
+	{
+		"show": "UnicornTV",
+		"title": "Interview with CC4CS talking about Security in Go",
+		"about": "We talk with Matt Rosentrater and Jiran Dowlati about security in go applications. They help us understand why golang is a better language for security all around when compared to many other programming languages available.",
+		"url": "https://go.unicorn.tv/podcasts/interview-with-cc4cs-talking-about-security-in-go",
+		"date": "2015-03-06"
+	},
+	{
+		"show": "The New Stack Analysts",
+		"title": "Talking with Developers at GopherCon India 2015",
+		"about": "“It’s very much India’s Go Conference. It’s not just us coming in and talking at you,” says Dave Cheney, an Australian speaker, blogger, and open source author. Dave co-organises the Sydney Go Users group and has been an active contributor to the Go project since February 2011. He spent some time during GopherConIndia 2015 to talk with Atul Jha, Community Manager for The New Stack, for this episode of The New Stack Analysts.",
+		"url": "https://soundcloud.com/thenewstackanalysts/show-33-gophercon-india-2015",
+		"date": "2015-03-07"
+	},
+	{
+		"show": "The Changelog",
+		"title": "The State of Go in 2015 with Andrew Gerrand",
+		"about": "Andrew shares the state of Go in 2015, how Go compares to other concurrent languages, why people choose Go over other languages, the C to Go toolchain conversion, and what’s coming in version 1.5 and 1.6 of Go.",
+		"url": "https://changelog.com/148/",
+		"date": "2015-03-25"
+	},
+	{
+		"show": "Beats, Rye \u0026 Types",
+		"title": "Fatherhood with Andrew Gerrand",
+		"about": "As you can tell by our terrible senses of humour, we’re dads. Since we spend a lot of time thinking about and caring for our sons and daughters, we enlisted the expertise of one of our good friends and “Old Dad”, Andrew Gerrand (@enneff) to talk to us about fatherhood. In this case we get to touch on fatherhood as it relates not only to our actual kids, but also as the stewardship of a major open-source project (Google’s Go language #golang).",
+		"url": "http://beatsryetypes.com/episodes/2015/05/18/episode-16-fatherhood-with-andrew-gerrand.html",
+		"date": "2015-05-18"
+	},
+	{
+		"show": "The Changelog",
+		"title": "GopherCon 2015 with Brian Ketelsen and Erik St. Martin",
+		"about": "In this show, we cover what it takes to create and run a conference like GopherCon, the size of the event, the speaking track, after-parties, hack day, workshops, and more. We even cover their focus on diversity with their Diversity Scholarship Support Fund that anyone can support, even those who don’t plan to attend, as well as their child care options to ensure even those with children have the opportunity to attend.",
+		"url": "https://changelog.com/158/",
+		"date": "2015-05-19"
+	},
+	{
+		"show": "Hacker Public Radio",
+		"title": "Some thoughts about the Go language",
+		"about": "I've been learning Go recently. Here are my initial thoughts about the language and framework.",
+		"url": "http://hackerpublicradio.org/eps.php?id=1793",
+		"date": "2015-06-07"
+	},
+	{
+		"show": "The Changelog",
+		"title": "Go in the Modern Enterprise Using gokit with Peter Bourgon",
+		"about": "Our guest this week is Peter Bourgon, the maker of gokit, a toolkit for building microservices using Go in the modern enterprise.",
+		"url": "https://changelog.com/163/",
+		"date": "2015-07-03"
+	},
+	{
+		"show": "The New Stack Analysts",
+		"title": "Code Geneaology and the Future of Go",
+		"about": "What paths will the Go programming language take? This question is posed to CoreOS CTO and Co-founder Brandon Philips, and DeferPanic Founder Ian Eyberg, at the start of this edition of The New Stack Analysts podcast, recorded at GopherCon 2015.",
+		"url": "https://soundcloud.com/thenewstackanalysts/show-52-code-geneology-and-the-future-of-go",
+		"date": "2015-07-10"
+	},
+	{
+		"show": "The Web Platform Podcast",
+		"title": "Go on The Web",
+		"about": "Andrew Gerrand (@enneff), Developer Advocate at Google \u0026 Go core contributor, talks about GoLang and how it is being used in Web Development today as well as the plans for the future of the Go as a platform for the web.",
+		"url": "http://thewebplatform.libsyn.com/55-go-on-the-web",
+		"date": "2015-08-05"
+	},
+	{
+		"show": "The Changelog",
+		"title": "Prometheus and Service Monitoring with Julius Volz from SoundCloud",
+		"about": "Our guest this week is Julius Volz from SoundCloud. Julius joins the show to talk about Prometheus, an open-source service monitoring system written in Go.",
+		"url": "https://changelog.com/168/",
+		"date": "2015-08-07"
+	},
+	{
+		"show": "The Changelog",
+		"title": "BoltDB, InfluxDB and more with Ben Johnson",
+		"about": "Our guest this week is Ben Johnson. He joins the show to school us on BoltDB, InfluxDB, and several other key value store databases out there and why he’s so passionate about developing open source software.",
+		"url": "https://changelog.com/170/",
+		"date": "2015-08-21"
+	},
+	{
+		"show": "The Changelog",
+		"title": "Cylon.js, Gobot, Artoo, and IoT with Ron Evans from The Hybrid Group",
+		"about": "Our guest this week is Ron Evans, ringleader of The Hybrid Group and creator of a fleet of open source robot…libraries. We talked about open source and robotics, Cylon.js, Gobot, Artoo, teaching, KidsRuby, his programming hero, and more.",
+		"url": "https://changelog.com/177/",
+		"date": "2015-10-09"
+	},
+	{
+		"show": ".NET Rocks!",
+		"title": "Programming in Go with Michael Van Sickle",
+		"about": "How much can a language do with only 25 keywords? Carl and Richard talk to Michael Van Sickle about Google's Go Language. The focus in Go is on simplicity and structure - it's amazing what you can do with so few keywords, plus fixed locations for braces, indentations, and so on. The benefit of Go is easy-to-read code that has great concurrency capabilities - the Actor model is a standard pattern of development for Go. Michael also digs into the tooling around Go, using Atom for an editor and various plug ins to make coding and debugging easier. So how good is Go? Docker is written in Go! Check it out!",
+		"url": "http://www.dotnetrocks.com/default.aspx?ShowNum=1203",
+		"date": "2015-10-13"
+	},
+	{
+		"show": "The Changelog",
+		"title": "Caddy HTTP/2 Web Server with Matt Holt and Sebastian Erhart",
+		"about": "This week we’re joined by Matt Holt and Sebastian Erhart to talk about Caddy the HTTP/2 web server written in Go. It’s time to serve the web like it’s 2015!",
+		"url": "https://changelog.com/179/",
+		"date": "2015-10-30"
+	},
+	{
+		"show": "Go Gab",
+		"title": "The Main Goroutine",
+		"about": "Coming to terms with Go's concurrency model, investigating how the main function operates.",
+		"url": "https://www.briefs.fm/go-gab/2",
+		"date": "2016-02-26"
+	},
+	{
+		"show": "Go Gab",
+		"title": "The Rune Data Type",
+		"about": "Three minutes isn't nearly long enough to talk about the rune data type in Go, but I tried anyway.",
+		"url": "https://www.briefs.fm/go-gab/3",
+		"date": "2016-03-01"
+	},
+	{
+		"show": "Go Gab",
+		"title": "Methods Vs Functions",
+		"about": "I wanted to talk briefly about methods vs functions as a way of laying the groundwork for future topics such as pointers and references. This episode answers the question, \"What is the difference between a method and a function?\".",
+		"url": "https://www.briefs.fm/go-gab/4",
+		"date": "2016-03-04"
+	},
+	{
+		"show": "Go Gab",
+		"title": "Pass By Reference Or Value",
+		"about": "Today we talk about whether Go is a pass-by-reference or pass-by-value language.",
+		"url": "https://www.briefs.fm/go-gab/5",
+		"date": "2016-03-19"
+	},
+	{
+		"show": "Google Cloud Platform Podcast",
+		"title": "Go on the Cloud with Andrew Gerrand and Chris Broadfoot",
+		"about": "Join us today for a conversation with Andrew Gerrand and Chris Broadfoot from the Go team. They will discuss with your hosts Francesc Campoy and Mark Mandel why Go is so successful for all the things cloud and how you can use it with Google Cloud Platform.",
+		"url": "https://www.gcppodcast.com/post/episode-25-go-with-andrew-and-chris/",
+		"date": "2016-05-11"
+	},
+	{
+		"show": "Go Time",
+		"title": "It’s Go Time!",
+		"about": "In this inaugural show Erik, Brian, and Carlisia kick things off by sharing some recent Go news that caught their attention, what to expect from this show, ways to get in touch, and more.",
+		"url": "https://changelog.com/gotime-1/",
+		"date": "2016-05-19"
+	},
+	{
+		"show": "Go Time",
+		"title": "Go Community Discussions with Cory LaNou",
+		"about": "Cory LaNou is our guest this week. He shared what it was like to start open source development after 13 years of programming behind closed doors, and what it was like to have one of his first contributions (a bug fix) be reviewed by Dave Cheney (a very prominent Go developer).",
+		"url": "https://changelog.com/gotime-2/",
+		"date": "2016-06-02"
+	},
+	{
+		"show": "Go Time",
+		"title": "Early Go Adoption with Travis Reeder",
+		"about": "Travis Reeder joins the show today to talk about Iron.io, early Go adoption, how Iron.io helps with GoSF and other events for the Go community, the implications of containers at scale, and more.",
+		"url": "https://changelog.com/gotime-3/",
+		"date": "2016-06-10"
+	},
+	{
+		"show": "Go Time",
+		"title": "Go and Data Science With Daniel Whitenack",
+		"about": "In this super informative show with Daniel Whitenack we discuss Go and data science. We talk about what data science really is, tools and projects for getting started with data science using Go, and what to expect from Daniel’s talk at GopherCon this year titled “Go for Data Science”.",
+		"url": "https://changelog.com/gotime-4/",
+		"date": "2016-06-16"
+	},
+	{
+		"show": "Go Time",
+		"title": "Sarah Adams on Test2Doc and Women Who Go",
+		"about": "On this show we’re joined by Sarah Adams. We talk about creating safe spaces for women to get started in the Go community, about Women Who Go, and take a deep dive into her Test2Doc open source project.",
+		"url": "https://changelog.com/gotime-5/",
+		"date": "2016-06-21"
+	},
+	{
+		"show": "Go Time",
+		"title": "Bill Kennedy on Mechanical Sympathy",
+		"about": "A deep dive into the fascinating topic of mechanical sympathy with Bill Kennedy. We talk about that plus CPU caches, how object oriented programming is not oriented to be sympathetic to the hardware, and data-oriented design.",
+		"url": "https://changelog.com/gotime-6/",
+		"date": "2016-06-23"
+	},
+	{
+		"show": "Hello Tech Pros",
+		"title": "GoLang Will Make Your Plumbing Code Sexy",
+		"about": "Aaron Schlesinger discusses the past, present and future of the Go programming language and why it is coming to take over the world.",
+		"url": "http://hellotechpros.com/aaron-schlesinger-technology/",
+		"date": "2016-07-07"
+	},
+	{
+		"show": "The Changelog",
+		"title": "ngrok and Go with Alan Shreve",
+		"about": "This week we talked to Alan Shreve, the creator of the beloved ngrok. We talked about; what it is, why it exists, why he wrote it in Go, and ultimately why 1.0 is open source, but 2.0 is not.",
+		"url": "https://changelog.com/210/",
+		"date": "2016-07-08"
+	},
+	{
+		"show": "Go Time",
+		"title": "Raphael Simon on goa The Framework for Building Microservices",
+		"about": "A deep dive into goa, a design-based microservice framework with a DSL that generates idiomatic Go code for your APIs, swagger documentation, and tests helpers.",
+		"url": "https://changelog.com/gotime-7/",
+		"date": "2016-07-26"
+	},
+	{
+		"show": "Go Time",
+		"title": "Asim Aslam on Micro the Go Microservice Toolkit",
+		"about": "Asim Aslam joined us to talk about Micro, a pluggable RPC based library which provides the fundamental building blocks for writing microservices in Go. We also discussed open source sustainability, microservices, and serverless architecture.",
+		"url": "https://changelog.com/gotime-8/",
+		"date": "2016-07-27"
+	},
+	{
+		"show": "Go Time",
+		"title": "Scott Mansfield on Go at Netflix",
+		"about": "Scott Mansfield joins us this week to talk about Go at Netflix, performance, latency and caching, Rend (their memcached proxy), chaos monkey, and more.",
+		"url": "https://changelog.com/gotime-9/",
+		"date": "2016-07-28"
+	},
+	{
+		"show": "Go Time",
+		"title": "State of Go Survey and Go at Heroku with Ed Muller",
+		"about": "Ed Muller from Heroku join us to discuss his State of Go survey, vendoring and versioning, the Heroku Go Buildpack, how they use Go at Heroku, and more.",
+		"url": "https://changelog.com/gotime-10/",
+		"date": "2016-08-01"
+	},
+	{
+		"show": "Go Time",
+		"title": "Jessie Frazelle on Maintaining Open Source, Docker, and dotfiles",
+		"about": "Jessie Frazelle joins us this week to talk about being an open source maintainer, Docker’s pull request acceptance workflow, dotfiles, getting started with public speaking.",
+		"url": "https://changelog.com/gotime-11/",
+		"date": "2016-08-10"
+	},
+	{
+		"show": "Go Time",
+		"title": "Beyang Liu on Go at Sourcegraph and Writing Better Code",
+		"about": "Beyang Liu from Sourcegraph joins the show to talk about Go at Sourcegraph and their code insight and language analysis tools for writing better code. We also get an understanding of what Sourcegraph is and the many ways to integrate it into your workflow.",
+		"url": "https://changelog.com/gotime-12/",
+		"date": "2016-08-10"
+	},
+	{
+		"show": "Go Time",
+		"title": "Francesc Campoy on GopherCon and Understanding nil",
+		"about": "In our first show after GopherCon, we are joined by Francesc Campoy to chat about some of our GopherCon experience, understanding nil, and a great variety of interesting topics of interest to the Go community.",
+		"url": "https://changelog.com/gotime-13/",
+		"date": "2016-08-18"
+	},
+	{
+		"show": "Go Time",
+		"title": "Matt Holt on CaddyServer, the ACME protocol and TLS",
+		"about": "This episode wins the contest for the most protocols discussed. Matt Holt joins us to talk about TLS, Let’s Encrypt, the ACME protocol, CaddyServer, and a host of other important information security issues.",
+		"url": "https://changelog.com/gotime-14/",
+		"date": "2016-08-25"
+	},
+	{
+		"show": "Hello Tech Pros",
+		"title": "The 4 Cornerstones of Writing Software — Bill Kennedy on Productivity",
+		"about": "Bill Kennedy is a managing partner at Ardan Studio in Miami, Florida, a mobile, web, and systems development company. He is also a co-author of the book Go in Action, the author of the blog GoingGo.Net, and a founding member of GoBridge which is working to increase Go adoption through diversity.",
+		"url": "http://hellotechpros.com/bill-kennedy-productivity/",
+		"date": "2016-08-30"
+	},
+	{
+		"show": "Go Time",
+		"title": "Ben Johnson on the Go Standard Library",
+		"about": "In this episode we have BoltDB’s Ben Johnson talking with us about NoSQL vs. Sql databases and tradeoffs, and we deep dive on the question of how to choose one or the other. We talk abouing data structures while discussing Ben’s Secret Lives of Data project, and also go over his motivation and plans for his blog post series of walkthroughs of the Go standard library packages.",
+		"url": "https://changelog.com/gotime-15/",
+		"date": "2016-09-01"
+	},
+	{
+		"show": "The New Stack @ Scale Podcast",
+		"title": "As Goes Cloud, So Goes Go!",
+		"about": "Which programming languages are most appropriate for use in the cloud? That question, in essence, is the topic of discussion for the twelfth episode of The New Stack at Scale podcast.",
+		"url": "https://blog.newrelic.com/2016/09/07/programming-languages-cloud-golang-new-stack-at-scale-podcast/",
+		"date": "2016-09-07"
+	},
+	{
+		"show": "Go Time",
+		"title": "SOLID Go Design with Dave Cheney",
+		"about": "We were joined by Dave Cheney this week to discuss SOLID Go design.",
+		"url": "https://changelog.com/gotime-16/",
+		"date": "2016-09-08"
+	},
+	{
+		"show": "Go Time",
+		"title": "Monorepos, Mentoring, and Testing with Bryan Liles",
+		"about": "We’re joined by Bryan Liles this week to discuss Monorepos, Mentoring, and Testing.",
+		"url": "https://changelog.com/gotime-17/",
+		"date": "2016-09-15"
+	},
+	{
+		"show": "Go Time",
+		"title": "Aaron Schlesinger on Go in 5 Minutes and Design Patterns",
+		"about": "Aaron Schlesinger joined the show this week to talk about his Go in 5 Minutes series of screencasts, and design patterns in Go.",
+		"url": "https://changelog.com/gotime-18/",
+		"date": "2016-09-22"
+	},
+	{
+		"show": "Go Time",
+		"title": "Programming Practices, Exercism, and Open Source",
+		"about": "Katrina Owen joined the show to explore ideas about open source, code review, learning to program, becoming a savvy programmer, mentoring, projects she's working on, and also her very prominening code learning tool Exercism.",
+		"url": "https://changelog.com/gotime/19",
+		"date": "2016-10-06"
+	},
+	{
+		"show": "Go Time",
+		"title": "Kubernetes, Containers, and Go",
+		"about": "Kelsey Hightower joined the show to talk about the work he's doing at Google Cloud Platform, Kubernetes, Bringing Pokémon GO to life on Google Cloud, Kubernetes cluster federation, Containers, and of course Go.",
+		"url": "https://changelog.com/gotime/20",
+		"date": "2016-10-13"
+	},
+	{
+		"show": "Go Time",
+		"title": "Building a Startup on Go",
+		"about": "Blake Mizerany joined the show to talk about coming to Go from Ruby, Go’s growth and adoption over the past 7 years, adopting external dependencies, building a startup on Go, and coding as CEO.",
+		"url": "https://changelog.com/gotime/21",
+		"date": "2016-10-20"
+	},
+	{
+		"show": "Go Time",
+		"title": "Go Work Groups and Hardware Projects",
+		"about": "Jaana Burcu Dogan joined the show to talk about hardware geekery, on-boarding people into Go, the state of the feedback loop with the Go team, and her initiative to create Go Work Groups.",
+		"url": "https://changelog.com/gotime/22",
+		"date": "2016-10-27"
+	},
+	{
+		"show": "Go Time",
+		"title": "Open Sourcing Chain's Developer Platform",
+		"about": "Tess Rinearson joined the show to talk about Chain launching their open source developer platform, choosing an open source license, open sourcing Chain Core, and the future of this powerful blockchain written in Go.",
+		"url": "https://changelog.com/gotime/23",
+		"date": "2016-11-03"
+	},
+	{
+		"show": "Go Time",
+		"title": "Juju, Jujucharms, and Gorram",
+		"about": "Nate Finch joined the show this week to talk about Juju, Charms, maturing a project along side Go, Gorram, finding your happy path, and more.",
+		"url": "https://changelog.com/gotime/24",
+		"date": "2016-11-10"
+	},
+	{
+		"show": "Go Time",
+		"title": "Go Kit, Dependency Management \u0026 Microservices",
+		"about": "Peter Bourgon joined the show to talk about Go kit, microservices, Go in the enterprise, dependency management, and writing Go packages.",
+		"url": "https://changelog.com/gotime/25",
+		"date": "2016-12-13"
+	},
+	{
+		"show": "Go Time",
+		"title": "Teaching and Learning Go",
+		"about": "Todd McLeod joined the show to talk about teaching and learning Go, his work as an Instructor at Fresno City College, Udemy and on YouTube.",
+		"url": "https://changelog.com/gotime/26",
+		"date": "2016-12-14"
+	},
+	{
+		"show": "Go Time",
+		"title": "The Go Compiler and Go 1.8",
+		"about": "Keith Randall from the Go team joined the show to talk about why a new compiler, what we gain from SSA, what’s next for the compiler, Go 1.8, and the goals/plans for Go 1.9.",
+		"url": "https://changelog.com/gotime/27",
+		"date": "2016-12-15"
+	},
+	{
+		"show": "Go Time",
+		"title": "Creating a Programming Language",
+		"about": "Thorsten Ball joined the show to talk about creating a programming language, writing an interpreter, why he wrote the book \"Writing An Interpreter in Go\", how writing a language/interpreter will help you better understand other programming languages, building a computer from Nand to Tetris, and his thoughts on imposter syndrome.",
+		"url": "https://changelog.com/gotime/28",
+		"date": "2016-12-23"
+	},
+	{
+		"show": "Go Time",
+		"title": "Go and Buffalo Live from Dunkin' Donuts",
+		"about": "Mark Bates joined the show this week live from his local Dunkin' Donuts to talk about Go and Buffalo — his Go web framework. Those who listened live said this was our best show yet. If you agree let us know in #gotimefm on Gopher Slack or say hi on Twitter.",
+		"url": "https://changelog.com/gotime/29",
+		"date": "2017-01-12"
+	},
+	{
+		"show": "Talk Python To Me",
+		"title": "Grumpy: Running Python on Go",
+		"about": "Google runs millions of lines of Python code. The front-end server that drives youtube.com and YouTube’s APIs is primarily written in Python, and it serves millions of requests per second! \r\n\r\nOn this episode you'll meet Dylan Trotter who is working increase performance and concurrency on these servers powering YouTube. He just launched Grumpy: A Python implementation based on Go, the highly concurrent language from Google. \r\n",
+		"url": "https://talkpython.fm/episodes/show/95/grumpy-running-python-on-go",
+		"date": "2017-01-18"
+	},
+	{
+		"show": "Go Time",
+		"title": "Discussing Imposter Syndrome",
+		"about": "Johnny Boursiquot and Bill Kennedy joined the show with Erik and Carlisia to talk about a hard subject — Imposter Syndrome. Not often enough do we get to have open conversations about the eventual inadequacies we all face at some point in our career; some more often than others. You are !imposter.",
+		"url": "https://changelog.com/gotime/30",
+		"date": "2017-01-19"
+	},
+	{
+		"show": "Go Time",
+		"title": "Go, Jocko, and Kafka",
+		"about": "Travis Jeffery joined the show to talk about Go, Jocko, Kafka, how Kafka’s storage internals work, and interesting Go projects and news.",
+		"url": "https://changelog.com/gotime/31",
+		"date": "2017-01-26"
+	},
+	{
+		"show": "Go Time",
+		"title": "Hellogopher, whosthere?",
+		"about": "Filippo Valsorda joined the show to talk about his project Hellogopher, whosthere (whoami.filippo.io), $GOPATH, TLS 1.3, Cloudflare's secret reverse proxy, and more.",
+		"url": "https://changelog.com/gotime/32",
+		"date": "2017-02-02"
+	},
+	{
+		"show": "Go Time",
+		"title": "Gopherize.me, GitHub Stars and BitBar",
+		"about": "Mat Ryer joined the show to talk about creating your own Gopher avae.me, the importance of GitHub Stars, his project BitBar, and other interesting Go projects and news.",
+		"url": "https://changelog.com/gotime/33",
+		"date": "2017-02-09"
+	},
+	{
+		"show": "Software Engineering Daily",
+		"title": "Go Data Science with Daniel Whitenack",
+		"about": "Daniel Whitenack transitioned from doing most of his data science work in Python to writing code in Golang. In this episode, Daniel explains the workflow of a data scientist and discusses why Go is useful. We also talk about the blurry line between data science and data engineering, and how Pachyderm is useful for versioning and reproducibility.",
+		"url": "https://softwareengineeringdaily.com/2017/02/09/go-data-science-with-daniel-whitenack/",
+		"date": "2017-02-09"
+	},
+	{
+		"show": "Go Time",
+		"title": "Pachyderm, Provenance, and Data Lakes",
+		"about": "Joe Doliner joined the show to talk about managing data lakes with Pachyderm, data containers, provenance, and other interesting Go projects and news.",
+		"url": "https://changelog.com/gotime/34",
+		"date": "2017-02-16"
+	},
+	{
+		"show": "Go Time",
+		"title": "Honeycomb, Complex Systems, and Saving Sanity",
+		"about": "Charity Majors joined the show to talk about debugging complex systems, using go to save one's sanity, hiring smart people who can learn, and collectively working to make \"on-call\" life not miserable.",
+		"url": "https://changelog.com/gotime/35",
+		"date": "2017-02-23"
+	},
+	{
+		"show": "Go Time",
+		"title": "Dependency Management, Semver, and Community Consensus",
+		"about": "Sam Boyer joined the show to talk about dependency management, building community consensus, and other interesting Go projects and news.\r\n",
+		"url": "https://changelog.com/gotime/36",
+		"date": "2017-03-02"
+	},
+	{
+		"show": "Go Time",
+		"title": "Gobot, Hardware, and Gatekeeping",
+		"about": "Ron Evans joined the show to talk about Gobot, writing software for hardware, and open source software's role in improving the human condition.\r\n",
+		"url": "https://changelog.com/gotime/37",
+		"date": "2017-03-09"
+	},
+	{
+		"show": "Go Time",
+		"title": "Go Developer Survey",
+		"about": "Steve Francia joined the show to talk about the results of the 2016 Go Developer Survey and other interesting Go projects and news.",
+		"url": "https://changelog.com/gotime/38",
+		"date": "2017-03-16"
+	},
+	{
+		"show": "Go Time",
+		"title": "Splice, Audio, and Compassion",
+		"about": "Matt Aimonetti joined the show to talk about using go to solve tough audio problems, making go for everyone, empowering people with software, and other interesting Go projects and news.",
+		"url": "https://changelog.com/gotime/39",
+		"date": "2017-03-24"
+	},
+	{
+		"show": "Go Time",
+		"title": "Game Development and Rebuilding Microservices",
+		"about": "Luna Duclos joined the show to talk about rebuilding a microservice infrastructure with Go, game development, and other interesting Go projects and news.",
+		"url": "https://changelog.com/gotime/40",
+		"date": "2017-03-31"
+	},
+	{
+		"show": "Go Time",
+		"title": "Distributed Messaging and Network Clients",
+		"about": "Wally Quevedo joined the show to talk processing millions of messages per second with Go, writing network clients, performance at scale, and other interesting Go projects and news.",
+		"url": "https://changelog.com/gotime/41",
+		"date": "2017-04-06"
+	},
+	{
+		"show": "Go Time",
+		"title": "Race Detection, Firmware, and Production-grade Go",
+		"about": "Kavya Joshi joined the show to talk about shipping production-grade Go, writing firmware with Go, making complex technical concepts accessible, and other interesting Go projects and news.",
+		"url": "https://changelog.com/gotime/42",
+		"date": "2017-04-13"
+	},
+	{
+		"show": "Go Time",
+		"title": "Getting Better, Mentoring, and Drawing Gophers with Ashley McNamara",
+		"about": "Ashley McNamara joined the show to talk about sharing developer experiences, seeking help from the community, getting people excited about STEM, and other interesting Go projects and news.",
+		"url": "https://changelog.com/gotime/43",
+		"date": "2017-04-20"
+	},
+	{
+		"show": "Go Time",
+		"title": "Go4 and Contributing to Go with Brad Fitzpatrick",
+		"about": "Brad Fitzpatrick joined the show to talk about becoming the face of open source Go, getting the community involved in bug triage, the potential future of Go, and other interesting Go projects and news.",
+		"url": "https://changelog.com/gotime/44",
+		"date": "2017-04-27"
+	},
+	{
+		"show": "Go Time",
+		"title": "SPECIAL — Ask Us Anything!",
+		"about": "This is a special \"Ask Us Anything\" episode where we answered questions submitted by the community — covering everything from impostor syndrome and the future of Go, to the music we listen to to get in a groove, and barbecue (of course).",
+		"url": "https://changelog.com/gotime/45",
+		"date": "2017-05-04"
+	},
+	{
+		"show": "Go Time",
+		"title": "Periph.io, Drivers, and Hardware with Marc-Antoine Ruel",
+		"about": "Marc-Antoine Ruel joined the show for a deep dive on controlling hardware, writing drivers with Go, and other interesting Go projects and news.",
+		"url": "https://changelog.com/gotime/46",
+		"date": "2017-05-12"
+	},
+	{
+		"show": "Go Time",
+		"title": "Docker, Moby, and Containers with Solomon Hykes",
+		"about": "Solomon Hykes joined the show to talk about all things Docker, Moby Project, and what makes Go a good fit for container management.",
+		"url": "https://changelog.com/gotime/47",
+		"date": "2017-05-25"
+	},
+	{
+		"show": "Go Time",
+		"title": "Restic and Backups (Done Right) with Alexander Neumann",
+		"about": "Alexander Neumann joined the show to talk about using Go to write backup software, solving tough problems like deduplication, scratching your own itch, and other interesting Go projects and news.",
+		"url": "https://changelog.com/gotime/48",
+		"date": "2017-06-01"
+	},
+	{
+		"show": "Go Time",
+		"title": "Adventures in VS Code with Ramya Rao",
+		"about": "Ramya Achutha Rao joined the show to talk about all the things that make VS Code a great editor for writing Go, getting help from the community, plus other interesting Go projects and news.",
+		"url": "https://changelog.com/gotime/49",
+		"date": "2017-06-13"
+	},
+	{
+		"show": "Go Time",
+		"title": "Bringing Kubernetes to Azure with Kris Nova",
+		"about": "Kris Nova joined the show to talk about developer empathy, running K8s on Azure, Kops, Draft, editors, containerizing odd things...and what it's like to play a keytar.",
+		"url": "https://changelog.com/gotime/50",
+		"date": "2017-07-06"
+	},
+	{
+		"show": "Go Time",
+		"title": "Infosec Research and App Security with Aaron Hnatiw",
+		"about": "Aaron Hnatiw joined the show to talk about being a security researcher, teaching application security with Go, and a deep dive on how engineers and developers can get started with infosec. Plus: white hat, black hat, red team, blue team...Aaron sorts it all out for us.",
+		"url": "https://changelog.com/gotime/51",
+		"date": "2017-07-19"
+	},
+	{
+		"show": "Go Time",
+		"title": "All About The Go Compiler with David Chase",
+		"about": "David Chase joined the show for a technical Q \u0026 A on compilers and what makes Go's compiler different from the rest (and of course, other interesting Go projects and news)",
+		"url": "https://changelog.com/gotime/52",
+		"date": "2017-08-07"
+	},
+	{
+		"show": "Go Time",
+		"title": "GopherCon 2017: A Retrospective",
+		"about": "After taking some time to recover, the gang rehashes all the greatest talks and favorite moments from this year's GopherCon. Much love to the Go community and all the souls who worked tirelessly to make this conference happen.",
+		"url": "https://changelog.com/gotime/53",
+		"date": "2017-08-18"
+	},
+	{
+		"show": "Go Time",
+		"title": "Go at Walmart (and Scale) with Chase Adams",
+		"about": "Chase Adams joined the show to talk about working on distributed systems with distributed teams, giving people opportunities to learn and grow, and other interesting Go projects and news.",
+		"url": "https://changelog.com/gotime/54",
+		"date": "2017-08-18"
+	},
+	{
+		"show": "Go Time",
+		"title": "Dep, Cross-platform, and Getting Started with Carolyn Van Slyck",
+		"about": "Carolyn Van Slyck joined the show to talk about dependency management, upping your cross-platform game, getting into Go, and other interesting Go projects and news.",
+		"url": "https://changelog.com/gotime/55",
+		"date": "2017-08-31"
+	},
+	{
+		"show": "Go Time",
+		"title": "Container Security and Demystifying Complexity with Liz Rice",
+		"about": "Liz Rice joined the show to talk about containers, cloud security, making complex concepts easier to understand, and other interesting Go projects and news.",
+		"url": "https://changelog.com/gotime/56",
+		"date": "2017-09-08"
+	},
+	{
+		"show": "Go Time",
+		"title": "Presenting a Pragmatic Perspective with Cindy Sridharan",
+		"about": "Cindy Sridharan joined the show to talk about development and operations as a generalist, leveling up as an engineer (while still providing business value), challenging the status-quo, and other interesting Go projects and news.",
+		"url": "https://changelog.com/gotime/57",
+		"date": "2017-09-15"
+	},
+	{
+		"show": "Go Time",
+		"title": "Full-time Open Source with Dmitri Shuralyov",
+		"about": "Dmitri Shuralyov joined the show to talk about being a full time contributor to open source, developing developer tools, and other interesting Go projects and news.",
+		"url": "https://changelog.com/gotime/58",
+		"date": "2017-11-03"
+	},
+	{
+		"show": "Go Time",
+		"title": "Improved Improved Improved (i3) with Michael Stapelberg",
+		"about": "Michael Stapelberg joined the show to talk about window management, open sourcing infrastructure, error handling, and other interesting Go projects and news.",
+		"url": "https://changelog.com/gotime/59",
+		"date": "2017-11-10"
+	},
+	{
+		"show": "Go Time",
+		"title": "Why WADL When You Can Swagger? with Ivan Porto Carrero",
+		"about": "Ivan Porto Carrero joined the show to talk about generating documentation (with Swagger), pks, kubo, and other interesting Go projects and news.",
+		"url": "https://changelog.com/gotime/60",
+		"date": "2017-11-17"
+	},
+	{
+		"show": "Go Time",
+		"title": "Loggregator, gRPC, and Diodes with Jason Keene \u0026 Andrew Poydence",
+		"about": "Jason Keene and Andrew Poydence joined the show to talk about Loggregator, scaling with Go at Pivotal, Diodes, and other interesting Go projects and news.",
+		"url": "https://changelog.com/gotime/61",
+		"date": "2017-11-25"
+	},
+	{
+		"show": "Go Time",
+		"title": "Building Blocks with Jeff Lindsay",
+		"about": "Jeff Lindsay joined the show to talk about workflow automation, designing apis, and building the society we want to live in...plus a surprise special announcement!",
+		"url": "https://changelog.com/gotime/62",
+		"date": "2017-12-01"
+	},
+	{
+		"show": "Go Time",
+		"title": "Changelog Takeover — K8s and Virtual Kubelet",
+		"about": "Adam and Jerod jumped in as hosts for an experiment in quantum podcasting, letting Erik and Brian play guests to talk about Virtual Kubelet, building OSS at Microsoft, BBQ (of course), and other interesting projects and news.",
+		"url": "https://changelog.com/gotime/63",
+		"date": "2018-01-15"
+	},
+	{
+		"show": "Go Time",
+		"title": "InfluxDB \u0026 IoT Data with Paul Dix",
+		"about": "Paul Dix joined the show and talked with us about InfluxDB, building a company with OSS, improving the language, and other interesting projects and news.",
+		"url": "https://changelog.com/gotime/64",
+		"date": "2018-01-29"
+	},
+	{
+		"show": "Go Time",
+		"title": "GopherCon Brazil \u0026 Genetics with Vitor De Mario",
+		"about": "Vitor De Mario joined the show and talked with us about hacking genetics with Go, GopherCon Brazil, machine learning, and other interesting projects and news.",
+		"url": "https://changelog.com/gotime/65",
+		"date": "2018-02-06"
+	},
+	{
+		"show": "Go Time",
+		"title": "Performance, Fuzzing, and Magic with Damian Gryski",
+		"about": "Damian Gryski joined the show and talked with us about perfbook, performance profiling, reading white papers for fun, fuzzing, and other interesting projects and news.",
+		"url": "https://changelog.com/gotime/66",
+		"date": "2018-02-16"
+	},
+	{
+		"show": "Go Time",
+		"title": "Supporting the Go community",
+		"about": "Cassandra Salisbury (the Go core team's newest member) joined Carlisia (who’s hosting all by herself) to talk about getting to know the Go community around the world, organizing meetups, empowering leaders, and what’s in store for the future.",
+		"url": "https://changelog.com/gotime/67",
+		"date": "2018-02-23"
+	},
+	{
+		"show": "Go Time",
+		"title": "SPECIAL — Ask us anything! (pt. 2)",
+		"about": "This is another special “Ask Us Anything” episode where we answer more questions submitted by the community. We covered A LOT of ground, including the hardest things we’ve ever written in Go, how the community can drive adoption, what we’d change about Go, and our favorite: “what do gophers eat?”",
+		"url": "https://changelog.com/gotime/68",
+		"date": "2018-03-01"
+	},
+	{
+		"show": "Go Time",
+		"title": "Golang Flow, FaaS, and Buffalo",
+		"about": "Brian Scott joined the show and talked with us about Golang Flow, contributing to open source, functions as a service, building for the web with Buffalo, and other interesting projects and news.",
+		"url": "https://changelog.com/gotime/69",
+		"date": "2018-03-09"
+	},
+	{
+		"show": "Go Time",
+		"title": "From Russia with love",
+		"about": "Leo Kalneus joined the show and talked with us about GopherCon Russia and the Go community in Russia. We also debunked a few myths about Siberia and of course talked about interesting Go projects and news.",
+		"url": "https://changelog.com/gotime/70",
+		"date": "2018-03-16"
+	},
+	{
+		"show": "Go Time",
+		"title": "Go is for everyone",
+		"about": "Carmen Andoh joined the show and talked with us about inclusivity, the 2017 Go Developer Survey, visualizing abstractions, and other interesting projects and news.",
+		"url": "https://changelog.com/gotime/71",
+		"date": "2018-03-22"
+	},
+	{
+		"show": "Go Time",
+		"title": "Learning and teaching Go",
+		"about": "Bill Kennedy joined the show and talked with Carlisia about learning Go, teaching Go (which is something we'll do at some point or another), making good presentations, and other interesting projects and news.",
+		"url": "https://changelog.com/gotime/72",
+		"date": "2018-03-22"
+	},
+	{
+		"show": "Go Time",
+		"title": "CockroachDB and Distributed Databases in Go",
+		"about": "Andrei Matei joined the show and talked with us about CockroachDB (and why it's easier to use than any RDBMS), distributed databases with Go, tracing, and other interesting projects and news.",
+		"url": "https://changelog.com/gotime/73",
+		"date": "2018-03-23"
+	},
+	{
+		"show": "Go Time",
+		"title": "Gophercises and creating content for Gophers",
+		"about": "Jon Calhoun joined the show and talked with us about Gophercises, experiencing the joy of building cool things, creating content for Gophers, and other interesting projects and news.",
+		"url": "https://changelog.com/gotime/74",
+		"date": "2018-03-30"
+	}
 ]
