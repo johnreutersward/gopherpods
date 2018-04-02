@@ -789,5 +789,12 @@
 		"about": "Jon Calhoun joined the show and talked with us about Gophercises, experiencing the joy of building cool things, creating content for Gophers, and other interesting projects and news.",
 		"url": "https://changelog.com/gotime/74",
 		"date": "2018-03-30"
+	},
+	{
+		"show": "Mapping The Journey",
+		"title": "Interview with Dave Cheney, Go Language Contributor",
+		"about": "Dave Cheney is a prolific programmer, top Go Contributor, blogger (his blog on Go dave.cheney.net is very famous) and now an author as well. He is a speaker and also organizes events around the world.",
+		"url": "https://www.mappingthejourney.com/single-post/2017/08/03/episode-6-interview-with-dave-cheney-go-language-contributor/",
+		"date": "2017-08-03"
 	}
 ]
